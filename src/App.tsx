@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Terminal, Activity, ArrowUpRight, ArrowRight, ShieldCheck, Mail, GitBranch, Linkedin, Github } from 'lucide-react';
 import { PROJECTS } from './data';
 import { Project } from './types';
+import logomark from '../assets/logomark.svg';
 import CustomCursor from './components/CustomCursor';
 import GlowBackground from './components/GlowBackground';
 import GlassModal from './components/GlassModal';
@@ -52,18 +53,13 @@ export default function App() {
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center gap-2.5"
           >
-            {/* Custom Varp Labs Logomark */}
-            <svg 
-              viewBox="0 0 100 100" 
-              className="w-5 h-5 text-primary fill-current" 
-              xmlns="http://www.w3.org/2000/svg"
+            {/* Varp Labs Logomark */}
+            <img 
+              src={logomark}
+              alt="Varp Labs Logo"
+              className="w-5 h-5"
               aria-hidden="true"
-            >
-              {/* Left Pillar */}
-              <path d="M 12,14 C 12,5 23,5 23,14 L 45,74 C 47,80 43,92 24,92 C 5,92 1,80 3,74 Z" />
-              {/* Right Pillar */}
-              <path d="M 88,14 C 88,5 77,5 77,14 L 55,74 C 53,80 57,92 76,92 C 95,92 99,80 97,74 Z" />
-            </svg>
+            />
             <div className="font-display text-lg md:text-xl font-bold text-primary tracking-tighter">
               varp labs
             </div>
@@ -367,6 +363,11 @@ export default function App() {
       <footer className="w-full px-6 md:px-12 py-16 mt-16 border-t border-white/5 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 select-none">
           <div className="flex items-center gap-3">
+            <img 
+              src={logomark}
+              alt="Varp Labs Logo"
+              className="w-5 h-5"
+            />
             <span className="font-display text-xl font-bold text-primary lowercase">varp labs</span>
             <span className="text-[10px] font-mono text-zinc-600">v1.2.0 // SSL SECURED</span>
           </div>
