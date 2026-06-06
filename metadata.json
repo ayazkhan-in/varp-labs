@@ -1,0 +1,6 @@
+{
+  "name": "Varp Labs",
+  "description": "Sophisticated software solutions for the modern world with a high-end glassmorphism aesthetic and smooth animations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
