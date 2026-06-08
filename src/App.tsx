@@ -1,4 +1,4 @@
-import { useState, useTransition } from 'react';
+import { useState, useTransition, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Terminal, Activity, ArrowUpRight, ArrowRight, ShieldCheck, Mail, GitBranch, Linkedin, Github } from 'lucide-react';
 import { PROJECTS } from './data';
@@ -13,16 +13,39 @@ import ScrambleText from './components/ScrambleText';
 import { ShaderAnimation } from './components/ShaderAnimation';
 import ScrollIndicator from './components/ScrollIndicator';
 import ProjectsGallery from './components/ProjectsGallery';
+import SweepLandingPage from './pages/SweepLandingPage';
+import QRLogLandingPage from './pages/QRLogLandingPage';
 
 export default function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeTab, setActiveTab] = useState<'work' | 'services' | 'contact'>('work');
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
   
   const [, startTransition] = useTransition();
   const [showShader, setShowShader] = useState(true);
 
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const navigate = (path: string) => {
+    window.history.pushState(null, '', path);
+    setCurrentPath(path);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  };
+
   const handleOpenProject = (project: Project) => {
-    setSelectedProject(project);
+    if (project.id === 'sweep') {
+      navigate('/sweep');
+    } else if (project.id === 'qrlog') {
+      navigate('/qrlog');
+    } else {
+      setSelectedProject(project);
+    }
   };
 
   const handleCloseProject = () => {
@@ -37,14 +60,20 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-background text-on-surface font-sans selection:bg-primary selection:text-on-primary">
-      {/* Background Ambience & Structurals */}
-      <CustomCursor />
-      <ScrollIndicator />
-      <GlowBackground />
+    <div className={`relative min-h-screen bg-background text-on-surface font-sans selection:bg-primary selection:text-on-primary ${currentPath !== '/sweep' && currentPath !== '/qrlog' && currentPath !== '/qr-log' ? 'custom-cursor-active' : ''}`}>
 
-      {/* Top Header Navigation */}
-      <header className="fixed top-0 w-full z-40 bg-background/60 backdrop-blur-md border-b border-white/5 transition-all">
+      {currentPath === '/sweep' ? (
+        <SweepLandingPage onBackHome={() => navigate('/')} />
+      ) : currentPath === '/qrlog' || currentPath === '/qr-log' ? (
+        <QRLogLandingPage onBackHome={() => navigate('/')} />
+      ) : (
+        <>
+          <CustomCursor />
+          <ScrollIndicator />
+          <GlowBackground />
+
+          {/* Top Header Navigation */}
+          <header className="fixed top-0 w-full z-40 bg-background/60 backdrop-blur-md border-b border-white/5 transition-all">
         <div className="max-w-7xl mx-auto px-6 md:px-12 py-5 flex justify-between items-center select-none">
           <motion.div 
             initial={{ opacity: 0, x: -10 }}
@@ -339,14 +368,16 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Global Detailed Portfolio GlassModal */}
-      <GlassModal
-        isOpen={selectedProject !== null}
-        onClose={handleCloseProject}
-        title={selectedProject ? `Specification brief // ${selectedProject.title}` : ''}
-      >
-        {selectedProject && <CaseStudyViewer project={selectedProject} />}
-      </GlassModal>
+          {/* Global Detailed Portfolio GlassModal */}
+          <GlassModal
+            isOpen={selectedProject !== null}
+            onClose={handleCloseProject}
+            title={selectedProject ? `Specification brief // ${selectedProject.title}` : ''}
+          >
+            {selectedProject && <CaseStudyViewer project={selectedProject} />}
+          </GlassModal>
+        </>
+      )}
     </div>
   );
 }

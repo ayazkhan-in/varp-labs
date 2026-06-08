@@ -24,7 +24,10 @@ body {
 
 /* Hide native cursor for desktop screens to match high-end custom pointer arrow scale interaction */
 @media (pointer: fine) {
-  *, *::before, *::after {
+  .custom-cursor-active,
+  .custom-cursor-active *,
+  .custom-cursor-active *::before,
+  .custom-cursor-active *::after {
     cursor: none !important;
   }
 }

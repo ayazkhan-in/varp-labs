@@ -68,7 +68,7 @@ export default function CustomCursor() {
 
   return (
     <motion.div
-      className="fixed inset-0 pointer-events-none z-[9999] hidden md:block"
+      className="fixed inset-0 pointer-events-none z-[9999] hidden md:block mix-blend-difference"
       style={{
         left: cursorX,
         top: cursorY,
