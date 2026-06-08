@@ -6,20 +6,20 @@
     <title>varp labs | sophisticated software</title>
     
     <!-- Default Favicon -->
-    <link id="favicon" rel="icon" type="image/x-icon" href="/public/favicon-b/favicon.ico" />
-    <link id="favicon-32" rel="icon" type="image/png" sizes="32x32" href="/public/favicon-b/favicon-32x32.png" />
-    <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="/public/favicon-b/favicon-16x16.png" />
-    <link id="apple-touch" rel="apple-touch-icon" href="/public/favicon-b/apple-touch-icon.png" />
+    <link id="favicon" rel="icon" type="image/x-icon" href="/favicon-b/favicon.ico" />
+    <link id="favicon-32" rel="icon" type="image/png" sizes="32x32" href="/favicon-b/favicon-32x32.png" />
+    <link id="favicon-16" rel="icon" type="image/png" sizes="16x16" href="/favicon-b/favicon-16x16.png" />
+    <link id="apple-touch" rel="apple-touch-icon" href="/favicon-b/apple-touch-icon.png" />
     
     <script>
       function updateFavicon() {
         const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const mode = isDark ? 'favicon-w' : 'favicon-b';
         
-        document.getElementById('favicon').href = `/public/${mode}/favicon.ico`;
-        document.getElementById('favicon-32').href = `/public/${mode}/favicon-32x32.png`;
-        document.getElementById('favicon-16').href = `/public/${mode}/favicon-16x16.png`;
-        document.getElementById('apple-touch').href = `/public/${mode}/apple-touch-icon.png`;
+        document.getElementById('favicon').href = `/${mode}/favicon.ico`;
+        document.getElementById('favicon-32').href = `/${mode}/favicon-32x32.png`;
+        document.getElementById('favicon-16').href = `/${mode}/favicon-16x16.png`;
+        document.getElementById('apple-touch').href = `/${mode}/apple-touch-icon.png`;
       }
       
       // Update on page load
