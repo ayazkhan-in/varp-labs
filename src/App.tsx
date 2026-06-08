@@ -9,14 +9,13 @@ import GlowBackground from './components/GlowBackground';
 import GlassModal from './components/GlassModal';
 import CaseStudyViewer from './components/CaseStudyViewer';
 import ServicesPanel from './components/ServicesPanel';
-import ProjectConfigurator from './components/ProjectConfigurator';
 import ScrambleText from './components/ScrambleText';
 import { ShaderAnimation } from './components/ShaderAnimation';
 import ScrollIndicator from './components/ScrollIndicator';
+import ProjectsGallery from './components/ProjectsGallery';
 
 export default function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'work' | 'services' | 'contact'>('work');
   
   const [, startTransition] = useTransition();
@@ -31,11 +30,10 @@ export default function App() {
   };
 
   const handleOpenContact = () => {
-    setIsContactModalOpen(true);
-  };
-
-  const handleCloseContact = () => {
-    setIsContactModalOpen(false);
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -231,86 +229,27 @@ export default function App() {
           </div>
         </section>
 
-        {/* Section 3: Portfolio Bento Section */}
-        <section className="max-w-7xl mx-auto px-6 md:px-12 py-24 space-y-12 select-text" id="work">
+        {/* Section 3: Our Apps & Projects Gallery */}
+        <section className="max-w-7xl mx-auto px-6 md:px-12 py-24 space-y-12 select-text border-b border-white/5" id="work">
           <div className="flex justify-between items-end border-b border-white/5 pb-6">
             <div>
               <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary lowercase tracking-tight">our apps</h2>
-              <p className="text-secondary text-xs font-mono uppercase tracking-wider mt-2">custom implementations & core protocols</p>
+              <p className="text-secondary text-xs font-mono uppercase tracking-wider mt-2">innovative applications & tools</p>
             </div>
             {/* Custom line indicator */}
             <div className="h-[2px] w-12 bg-primary hidden sm:block" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-            {/* Main Primary Bento Area (Next-gen Asset management) */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              onClick={() => startTransition(() => handleOpenProject(PROJECTS[0]))}
-              className="md:col-span-8 group relative overflow-hidden border border-white/5 aspect-video md:aspect-auto md:h-[500px] cursor-pointer bg-black/40 hover:bg-black/60 transition-all duration-500"
-            >
-              {/* Image with extreme tech-lab graying */}
-              <img 
-                src={PROJECTS[0].image}
-                alt="Fintech Asset Management Platform screenshot mock"
-                referrerPolicy="no-referrer"
-                className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale group-hover:opacity-45 group-hover:scale-[1.02] transition-all duration-700" 
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-              
-              <div className="absolute bottom-0 p-8 w-full space-y-4">
-                <span className="inline-block font-mono text-[10px] text-secondary border border-white/10 px-2 py-0.5 bg-background lowercase">
-                  fintech shell
-                </span>
-                <div>
-                  <h3 className="font-display text-2xl md:text-3xl font-semibold text-primary mt-1 lowercase flex items-center gap-1.5">
-                    next-gen asset management <ArrowUpRight size={18} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </h3>
-                  <p className="font-sans text-secondary text-sm mt-2 max-w-md lowercase leading-relaxed">
-                    custom-built financial infrastructure for rapid transaction processing and real-time auditing.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+          <ProjectsGallery 
+            projects={PROJECTS.slice(3)} 
+            onProjectClick={handleOpenProject}
+          />
 
-            {/* Secondary Bento Area (Automata & Nebulas) */}
-            <div className="md:col-span-4 grid grid-rows-2 gap-6">
-              {PROJECTS.slice(1).map((project, index) => (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{
-                    duration: 0.7,
-                    delay: 0.15 * (index + 1), // Offset staggered timing beautifully
-                    ease: [0.16, 1, 0.3, 1]
-                  }}
-                  onClick={() => startTransition(() => handleOpenProject(project))}
-                  className="border border-white/5 p-8 flex flex-col justify-end min-h-[238px] cursor-pointer bg-black/20 hover:bg-black/40 hover:border-white/10 transition-all duration-300 group"
-                >
-                  <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-wider mb-2">
-                    / {project.tag} /
-                  </span>
-                  
-                  <h4 className="font-display text-xl text-primary font-medium lowercase flex items-center justify-between">
-                    {project.title}
-                    <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </h4>
-                  
-                  <p className="font-sans text-secondary text-xs mt-2 lowercase leading-relaxed line-clamp-2">
-                    {project.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
+          <div className="text-center pt-2">
+            <p className="font-sans text-secondary text-sm md:text-base lowercase italic">cooking more apps <span className="text-primary">;</span>)</p>
           </div>
         </section>
-
-        {/* Section 4: What We Do (Services Panel) */}
+        {/* Section 4: What We Do */}
         <section className="bg-black/20 py-24 border-y border-white/5" id="services">
           <div className="max-w-7xl mx-auto px-6 md:px-12">
             <div className="flex flex-col lg:flex-row justify-between items-start gap-12">
@@ -349,9 +288,20 @@ export default function App() {
                 </p>
               </div>
 
-              {/* Inline Workspace Configurator */}
-              <div className="border-t border-white/5 pt-12">
-                <ProjectConfigurator />
+              {/* Email Contact */}
+              <div className="border-t border-white/5 pt-12 text-center space-y-4">
+                <p className="font-sans text-secondary text-sm lowercase">reach us at</p>
+                <motion.a 
+                  href="mailto:hello@varplabs.com"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  whileHover={{ scale: 1.05 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4 }}
+                  className="inline-block font-mono text-sm md:text-base font-semibold text-primary border border-primary px-6 py-2.5 rounded-full hover:bg-primary/10 transition-all"
+                >
+                  hello@varplabs.com
+                </motion.a>
               </div>
             </div>
           </div>
@@ -396,20 +346,6 @@ export default function App() {
         title={selectedProject ? `Specification brief // ${selectedProject.title}` : ''}
       >
         {selectedProject && <CaseStudyViewer project={selectedProject} />}
-      </GlassModal>
-
-      {/* Primary Floating Inquiry Modal */}
-      <GlassModal
-        isOpen={isContactModalOpen}
-        onClose={handleCloseContact}
-        title="Establish secure project inquiry channel"
-      >
-        <div className="space-y-6 select-text">
-          <p className="text-secondary text-sm lowercase leading-relaxed">
-            complete the step-by-step configuration below to define your project parameters, select a high-performance stack, and obtain an SLA-compliant roadmap immediately.
-          </p>
-          <ProjectConfigurator onSubmitted={handleCloseContact} />
-        </div>
       </GlassModal>
     </div>
   );

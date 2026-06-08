@@ -1,25 +1,9 @@
-import { useState, useTransition } from 'react';
 import { motion } from 'motion/react';
 import { Service } from '../types';
 import { SERVICES } from '../data';
-import { Terminal, Layout, Cloud, BarChart2, ArrowUpRight, Code2 } from 'lucide-react';
-import GlassModal from './GlassModal';
-import ProjectConfigurator from './ProjectConfigurator';
+import { Terminal, Layout, Cloud, BarChart2, Code2 } from 'lucide-react';
 
 export default function ServicesPanel() {
-  const [activeServiceId, setActiveServiceId] = useState<string | null>(null);
-  const [isConfiguratorOpen, setIsConfiguratorOpen] = useState(false);
-  
-  const [, startTransition] = useTransition();
-
-  const handleOpenConfigurator = (serviceId: string) => {
-    setActiveServiceId(serviceId);
-    setIsConfiguratorOpen(true);
-  };
-
-  const handleCloseConfigurator = () => {
-    setIsConfiguratorOpen(false);
-  };
 
   // Maps custom dynamic name strings to pre-compiled Lucide React icons
   const renderIcon = (iconName: string) => {
@@ -79,32 +63,10 @@ export default function ServicesPanel() {
                 </li>
               ))}
             </ul>
-
-            <div className="pt-2">
-              <button
-                onClick={() => startTransition(() => handleOpenConfigurator(service.id))}
-                className="w-full py-2.5 border border-white/10 text-xs font-mono text-secondary hover:text-primary hover:border-primary bg-black/10 hover:bg-white/5 transition-all text-center flex items-center justify-center gap-1 cursor-pointer lowercase"
-              >
-                architect stack <ArrowUpRight size={12} />
-              </button>
-            </div>
           </motion.div>
         ))}
       </div>
 
-      {/* Glassmorphic Project custom configuration Drawer/Modal */}
-      <GlassModal
-        isOpen={isConfiguratorOpen}
-        onClose={handleCloseConfigurator}
-        title={`System blueprint // ${SERVICES.find(s => s.id === activeServiceId)?.title || ''}`}
-      >
-        {activeServiceId && (
-          <ProjectConfigurator
-            initialServiceId={activeServiceId}
-            onSubmitted={handleCloseConfigurator}
-          />
-        )}
-      </GlassModal>
     </div>
   );
 }

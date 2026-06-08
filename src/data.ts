@@ -1,4 +1,8 @@
 import { Project, Service } from './types';
+import taskstackImg from '../assets/Taskstack.png';
+import serinImg from '../assets/Serin.png';
+import qrlogImg from '../assets/qrlog.png';
+import sweepImg from '../assets/sweep.png';
 
 export const PROJECTS: Project[] = [
   {
@@ -78,6 +82,114 @@ export const PROJECTS: Project[] = [
       { name: 'Build Inbound Rate', value: 382, change: '+12%' },
       { name: 'Cache Savings Time', value: 16.8, change: '+2.4h' },
       { name: 'Orchestrator Idle Overhead', value: 1.8, change: '-0.3%' }
+    ]
+  },
+  {
+    id: 'taskstack',
+    title: 'taskstack',
+    subtitle: 'ai-powered task management',
+    tag: 'webapp',
+    description: 'AI-powered todo list that automatically generates daily task lists based on user goals, personalized for each user.',
+    extendedDescription: 'TaskStack leverages advanced machine learning algorithms to understand user goals and automatically generate optimized daily todo lists. The system learns from user behavior patterns and adapts task suggestions in real-time, prioritizing high-impact tasks and distributing workload intelligently across the day.',
+    image: taskstackImg,
+    stats: [
+      { label: 'users reached', value: '5k+' },
+      { label: 'daily tasks generated', value: '50k+' },
+      { label: 'completion rate', value: '87%' },
+      { label: 'ai accuracy', value: '94%' }
+    ],
+    techStack: ['React', 'Node.js', 'MongoDB', 'Python', 'TensorFlow'],
+    architecture: [
+      { step: 'frontend', detail: 'Responsive React webapp with real-time task synchronization' },
+      { step: 'ml engine', detail: 'Python-based ML pipeline for goal analysis and task generation' },
+      { step: 'backend api', detail: 'Node.js REST API with MongoDB for persistent data storage' },
+      { step: 'analytics', detail: 'User behavior tracking and completion pattern analysis' }
+    ],
+    metrics: [
+      { name: 'Daily Active Users', value: 1250, change: '+18%' },
+      { name: 'Avg Task Completion', value: 87, change: '+5.2%' },
+      { name: 'System Response Time', value: 245, change: '-32ms' }
+    ]
+  },
+  {
+    id: 'serin',
+    title: 'serin',
+    subtitle: 'ai seo optimization tool',
+    tag: 'webapp',
+    description: 'AI-powered SEO tool that provides intelligent keyword analysis, content optimization, and ranking predictions.',
+    extendedDescription: 'Serin uses advanced NLP and machine learning to analyze search intent, competitor strategies, and content performance. It delivers real-time optimization recommendations, auto-generates SEO-friendly content variations, and predicts ranking improvements with high accuracy.',
+    image: serinImg,
+    stats: [
+      { label: 'websites optimized', value: '2.5k+' },
+      { label: 'avg ranking lift', value: '+23%' },
+      { label: 'content variants generated', value: '100k+' },
+      { label: 'prediction accuracy', value: '91%' }
+    ],
+    techStack: ['Vue.js', 'FastAPI', 'PostgreSQL', 'Redis', 'Elasticsearch'],
+    architecture: [
+      { step: 'content analyzer', detail: 'NLP engine for SERP analysis and keyword clustering' },
+      { step: 'recommendation engine', detail: 'ML-based suggestions for on-page and technical SEO' },
+      { step: 'content generator', detail: 'AI copywriting system for optimized meta descriptions and titles' },
+      { step: 'ranking tracker', detail: 'Real-time position tracking across multiple search engines' }
+    ],
+    metrics: [
+      { name: 'Avg Ranking Improvement', value: 23, change: '+6.8%' },
+      { name: 'Content Optimization Index', value: 78.5, change: '+12.3%' },
+      { name: 'API Response Time', value: 342, change: '-89ms' }
+    ]
+  },
+  {
+    id: 'qrlog',
+    title: 'qrlog',
+    subtitle: 'qr code scanner & generator',
+    tag: 'android app',
+    description: 'Android app that maintains comprehensive logs of all QR codes scanned and allows users to generate custom QR codes easily.',
+    extendedDescription: 'QRLog is a feature-rich Android application that provides seamless QR code scanning with automatic logging, history management, and custom QR generation. The app stores all scans with timestamps, locations, and metadata for easy retrieval and analytics.',
+    image: qrlogImg,
+    stats: [
+      { label: 'downloads', value: '50k+' },
+      { label: 'scans logged', value: '2M+' },
+      { label: 'avg rating', value: '4.7/5' },
+      { label: 'active users', value: '15k' }
+    ],
+    techStack: ['Kotlin', 'Jetpack Compose', 'Room Database', 'Firebase', 'Google ML Kit'],
+    architecture: [
+      { step: 'scanner module', detail: 'Google ML Kit-powered QR detection with real-time preview' },
+      { step: 'local database', detail: 'Room database for offline-first scan logging and history' },
+      { step: 'qr generator', detail: 'Custom QR encoding with styling and customization options' },
+      { step: 'sync service', detail: 'Firebase cloud sync for cross-device data availability' }
+    ],
+    metrics: [
+      { name: 'Daily Scans', value: 8500, change: '+22%' },
+      { name: 'App Retention Rate', value: 68, change: '+8.5%' },
+      { name: 'Average Session Duration', value: 12.3, change: '+1.2m' }
+    ]
+  },
+  {
+    id: 'sweep',
+    title: 'sweep',
+    subtitle: 'auto screenshot deletion',
+    tag: 'utility app',
+    description: 'Automated screenshot deletion app that intelligently manages storage by removing old screenshots based on customizable rules.',
+    extendedDescription: 'Sweep intelligently monitors your device storage and automatically deletes screenshots based on age, size, and custom rules you define. It includes smart categorization, manual review options, and detailed analytics to help you reclaim storage space without losing important captures.',
+    image: sweepImg,
+    stats: [
+      { label: 'storage freed', value: '1.2M GB' },
+      { label: 'screenshots deleted', value: '50M+' },
+      { label: 'user satisfaction', value: '92%' },
+      { label: 'daily active users', value: '8k' }
+    ],
+    techStack: ['Swift', 'iOS SDK', 'CloudKit', 'Core ML', 'AVFoundation'],
+    architecture: [
+      { step: 'file monitor', detail: 'Background service monitoring camera roll changes' },
+      { step: 'ml classifier', detail: 'On-device ML model for screenshot quality and importance' },
+      { step: 'auto deletion', detail: 'Rule-based deletion engine with safety reviews' },
+      { step: 'analytics dashboard', detail: 'Storage insights and deletion history tracking' }
+    ],
+    metrics: [
+      { name: 'Avg Storage Freed (MB)', value: 2850, change: '+340%' },
+      { name: 'Safe Deletion Rate', value: 99.2, change: '+0.8%' },
+      { name: 'User Retention', value: 76, change: '+12.3%' }
     ]
   }
 ];
