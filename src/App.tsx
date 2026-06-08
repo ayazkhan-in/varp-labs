@@ -32,6 +32,44 @@ export default function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
+  useEffect(() => {
+    let title = 'varp labs | sophisticated software';
+    let description = 'building sophisticated software solutions for the modern world. we transform complex requirements into elegant, high-performance digital products.';
+    let ogImage = '/og.png';
+    let url = 'https://varplabs.com/';
+
+    if (currentPath === '/sweep') {
+      title = 'sweep | auto screenshot deletion';
+      description = 'Sweep intelligently monitors your Android device storage and automatically deletes screenshots based on age, size, and custom rules.';
+      ogImage = '/og-sweep.png';
+      url = 'https://varplabs.com/sweep';
+    } else if (currentPath === '/qrlog' || currentPath === '/qr-log') {
+      title = 'qrlog | qr code scanner & generator';
+      description = 'QRLog is a minimal, privacy-focused Android scanner built for security. It archives every scan locally and blocks malicious redirect links.';
+      ogImage = '/og-qrlog.png';
+      url = 'https://varplabs.com/qrlog';
+    }
+
+    document.title = title;
+
+    const updateMetaTag = (selector: string, attributeName: string, value: string) => {
+      const el = document.querySelector(selector);
+      if (el) {
+        el.setAttribute(attributeName, value);
+      }
+    };
+
+    updateMetaTag('meta[name="description"]', 'content', description);
+    updateMetaTag('meta[property="og:title"]', 'content', title);
+    updateMetaTag('meta[property="og:description"]', 'content', description);
+    updateMetaTag('meta[property="og:image"]', 'content', ogImage);
+    updateMetaTag('meta[property="og:url"]', 'content', url);
+    updateMetaTag('meta[name="twitter:title"]', 'content', title);
+    updateMetaTag('meta[name="twitter:description"]', 'content', description);
+    updateMetaTag('meta[name="twitter:image"]', 'content', ogImage);
+    updateMetaTag('meta[name="twitter:url"]', 'content', url);
+  }, [currentPath]);
+
   const navigate = (path: string) => {
     window.history.pushState(null, '', path);
     setCurrentPath(path);
