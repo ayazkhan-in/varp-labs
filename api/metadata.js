@@ -1,19 +1,23 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-module.exports = (req, res) => {
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default function handler(req, res) {
   const urlPath = req.url || '';
   
   try {
     // Read the compiled index.html generated at build time
-    const filePath = path.join(process.cwd(), 'dist/index.html');
+    const filePath = path.join(__dirname, '../dist/index.html');
     let html = fs.readFileSync(filePath, 'utf8');
 
     // Dynamically retrieve protocol and host to support Vercel preview deploys
     const host = req.headers.host || 'varplabs.com';
     const protocol = req.headers['x-forwarded-proto'] || 'https';
     const baseUrl = `${protocol}://${host}`;
-
+ 
     let title = 'varp labs | sophisticated software';
     let description = 'building sophisticated software solutions for the modern world. we transform complex requirements into elegant, high-performance digital products.';
     let ogImage = `${baseUrl}/og.png`;
@@ -50,4 +54,4 @@ module.exports = (req, res) => {
     console.error('Error in metadata pre-renderer:', error);
     return res.status(500).send('Internal Server Error: Failed to render metadata');
   }
-};
+}
