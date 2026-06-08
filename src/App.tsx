@@ -15,6 +15,7 @@ import ScrollIndicator from './components/ScrollIndicator';
 import ProjectsGallery from './components/ProjectsGallery';
 import SweepLandingPage from './pages/SweepLandingPage';
 import QRLogLandingPage from './pages/QRLogLandingPage';
+import { FloatingPaths } from './components/BackgroundPaths';
 
 export default function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -345,10 +346,36 @@ export default function App() {
               <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #fff 1px, transparent 0)', backgroundSize: '40px 40px' }} />
             </div>
 
-            <div className="relative z-10 space-y-12">
+            {/* Floating Paths Background Animation */}
+            <div className="absolute inset-0 pointer-events-none opacity-80">
+              <FloatingPaths position={1} />
+              <FloatingPaths position={-1} />
+            </div>
+
+            <div className="relative z-10 space-y-10">
               <div className="text-center space-y-3">
                 <h2 className="font-display text-4xl md:text-5xl font-semibold text-primary lowercase tracking-tight">
-                  start a project
+                  {"start a project".split(" ").map((word, wordIndex) => (
+                    <span key={wordIndex} className="inline-block mr-3 last:mr-0">
+                      {word.split("").map((letter, letterIndex) => (
+                        <motion.span
+                          key={`${wordIndex}-${letterIndex}`}
+                          initial={{ y: 20, opacity: 0 }}
+                          whileInView={{ y: 0, opacity: 1 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            delay: wordIndex * 0.1 + letterIndex * 0.03,
+                            type: "spring",
+                            stiffness: 150,
+                            damping: 25,
+                          }}
+                          className="inline-block"
+                        >
+                          {letter}
+                        </motion.span>
+                      ))}
+                    </span>
+                  ))}
                 </h2>
                 <p className="font-sans text-secondary text-sm max-w-xl mx-auto lowercase leading-relaxed">
                   ready to build the future? let's discuss your technical requirements and define the path forward.
@@ -356,7 +383,7 @@ export default function App() {
               </div>
 
               {/* Email Contact */}
-              <div className="border-t border-white/5 pt-12 text-center space-y-4">
+              <div className="text-center space-y-4">
                 <p className="font-sans text-secondary text-sm lowercase">reach us at</p>
                 <motion.a 
                   href="mailto:hello@varplabs.com"
