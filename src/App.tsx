@@ -1,6 +1,7 @@
 import { useState, useTransition, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
 import { Terminal, Activity, ArrowUpRight, ArrowRight, ShieldCheck, Mail, GitBranch, Linkedin, Github, LayoutGrid, List } from 'lucide-react';
 import { PROJECTS } from './data';
 import { Project } from './types';
@@ -55,7 +56,7 @@ export default function App() {
     } else if (currentPath === '/teachback') {
       title = 'teachback | explain to learn';
       description = 'TeachBack is an AI-powered learning app built around the Feynman Technique. Explain concepts aloud, receive clarity feedback, and review with spaced repetition.';
-      ogImage = '/assets/Teachback.png';
+      ogImage = '/og-teachback.png';
       url = 'https://varplabs.com/teachback';
     }
 
@@ -111,6 +112,7 @@ export default function App() {
   return (
     <div className={`relative min-h-screen bg-background text-on-surface font-sans selection:bg-primary selection:text-on-primary ${currentPath !== '/sweep' && currentPath !== '/qrlog' && currentPath !== '/qr-log' && currentPath !== '/teachback' ? 'custom-cursor-active' : ''}`}>
       <SpeedInsights />
+      <Analytics />
 
       {currentPath === '/sweep' ? (
         <SweepLandingPage onBackHome={() => navigate('/')} />

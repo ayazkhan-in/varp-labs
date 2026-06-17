@@ -33,6 +33,11 @@ export default function handler(req, res) {
       description = 'QRLog is a minimal, privacy-focused Android scanner built for security. It archives every scan locally and blocks malicious redirect links.';
       ogImage = `${baseUrl}/og-qrlog.png`;
       url = `${baseUrl}/qrlog`;
+    } else if (urlPath.includes('/teachback')) {
+      title = 'teachback | explain to learn';
+      description = 'TeachBack is an AI-powered learning app built around the Feynman Technique. Explain concepts aloud, receive clarity feedback, and review with spaced repetition.';
+      ogImage = `${baseUrl}/og-teachback.png`;
+      url = `${baseUrl}/teachback`;
     }
 
     // Replace default index.html tags with page-specific ones for SEO crawlers
