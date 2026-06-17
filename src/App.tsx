@@ -1,4 +1,4 @@
-import { useState, useTransition, useEffect } from 'react';
+import { useState, useTransition, useEffect, Suspense, lazy } from 'react';
 import { motion } from 'motion/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Analytics } from '@vercel/analytics/react';
@@ -15,10 +15,12 @@ import ScrambleText from './components/ScrambleText';
 import { ShaderAnimation } from './components/ShaderAnimation';
 import ScrollIndicator from './components/ScrollIndicator';
 import ProjectsGallery from './components/ProjectsGallery';
-import SweepLandingPage from './pages/SweepLandingPage';
-import QRLogLandingPage from './pages/QRLogLandingPage';
-import TeachbackLandingPage from './pages/TeachbackLandingPage';
 import { FloatingPaths } from './components/BackgroundPaths';
+
+// Lazy load landing pages for code splitting
+const SweepLandingPage = lazy(() => import('./pages/SweepLandingPage'));
+const QRLogLandingPage = lazy(() => import('./pages/QRLogLandingPage'));
+const TeachbackLandingPage = lazy(() => import('./pages/TeachbackLandingPage'));
 
 export default function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -115,11 +117,17 @@ export default function App() {
       <Analytics />
 
       {currentPath === '/sweep' ? (
-        <SweepLandingPage onBackHome={() => navigate('/')} />
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="text-secondary">Loading...</div></div>}>
+          <SweepLandingPage onBackHome={() => navigate('/')} />
+        </Suspense>
       ) : currentPath === '/qrlog' || currentPath === '/qr-log' ? (
-        <QRLogLandingPage onBackHome={() => navigate('/')} />
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="text-secondary">Loading...</div></div>}>
+          <QRLogLandingPage onBackHome={() => navigate('/')} />
+        </Suspense>
       ) : currentPath === '/teachback' ? (
-        <TeachbackLandingPage onBackHome={() => navigate('/')} />
+        <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="text-secondary">Loading...</div></div>}>
+          <TeachbackLandingPage onBackHome={() => navigate('/')} />
+        </Suspense>
       ) : (
         <>
           <CustomCursor />
