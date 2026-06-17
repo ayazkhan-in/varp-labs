@@ -7,6 +7,8 @@ import {
   Flame, Award, BookOpenCheck, Volume2, ArrowRight
 } from 'lucide-react';
 import teachbackLogo from '../../assets/Teachback.png';
+import { arrayUnion, doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { db } from '../services/firebase';
 
 interface TeachbackLandingPageProps {
   onBackHome: () => void;
@@ -170,6 +172,8 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
   // Waitlist States
   const [waitlistEmail, setWaitlistEmail] = useState('');
   const [waitlistSubmitted, setWaitlistSubmitted] = useState(false);
+  const [waitlistSaving, setWaitlistSaving] = useState(false);
+  const [waitlistError, setWaitlistError] = useState('');
 
   const recordingIntervalRef = useRef<number | null>(null);
   const transcriptionTimeoutRef = useRef<number | null>(null);
@@ -293,6 +297,36 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
     };
   }, []);
 
+  const handleWaitlistSubmit = async (email: string) => {
+    const normalizedEmail = email.trim().toLowerCase();
+
+    if (!normalizedEmail) {
+      return;
+    }
+
+    setWaitlistSaving(true);
+    setWaitlistError('');
+
+    try {
+      await setDoc(
+        doc(db, 'teachback-waitlist', 'teachback waitlist'),
+        {
+          emails: arrayUnion(normalizedEmail),
+          updatedAt: serverTimestamp(),
+        },
+        { merge: true }
+      );
+
+      setWaitlistEmail(normalizedEmail);
+      setWaitlistSubmitted(true);
+    } catch (error) {
+      console.error('Failed to save teachback waitlist email', error);
+      setWaitlistError('We could not save your email right now. Please try again in a moment.');
+    } finally {
+      setWaitlistSaving(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#FFFFFF] text-[#000000] font-sans selection:bg-[#000000] selection:text-[#FFCE18] antialiased">
       
@@ -361,7 +395,7 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                 <form 
                   onSubmit={(e) => {
                     e.preventDefault();
-                    if (waitlistEmail.trim()) setWaitlistSubmitted(true);
+                    void handleWaitlistSubmit(waitlistEmail);
                   }}
                   className="flex flex-col sm:flex-row gap-3 pt-2"
                 >
@@ -371,15 +405,22 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                     placeholder="Enter your email for early access"
                     value={waitlistEmail}
                     onChange={(e) => setWaitlistEmail(e.target.value)}
+                    disabled={waitlistSaving}
                     className="flex-1 bg-[#FFFFFF] border-4 border-[#000000] px-4 py-3.5 rounded-xl font-bold text-base shadow-[4px_4px_0px_0px_#000000] focus:outline-none focus:translate-x-[-2px] focus:translate-y-[-2px] focus:shadow-[6px_6px_0px_0px_#000000] transition-all"
                   />
                   <button
                     type="submit"
-                    className="bg-[#000000] text-[#FFFFFF] border-4 border-[#000000] font-bold px-6 py-3.5 rounded-xl hover:bg-[#FFFFFF] hover:text-[#000000] shadow-[4px_4px_0px_0px_#FFFFFF] hover:translate-x-[-2px] hover:translate-y-[-2px] active:translate-x-0 active:translate-y-0 transition-all cursor-pointer uppercase text-sm"
+                    disabled={waitlistSaving}
+                    className="bg-[#000000] text-[#FFFFFF] border-4 border-[#000000] font-bold px-6 py-3.5 rounded-xl hover:bg-[#FFFFFF] hover:text-[#000000] shadow-[4px_4px_0px_0px_#FFFFFF] hover:translate-x-[-2px] hover:translate-y-[-2px] active:translate-x-0 active:translate-y-0 transition-all cursor-pointer uppercase text-sm disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-[#000000] disabled:hover:text-[#FFFFFF] disabled:hover:translate-x-0 disabled:hover:translate-y-0"
                   >
-                    Join Waitlist
+                    {waitlistSaving ? 'Saving...' : 'Join Waitlist'}
                   </button>
                 </form>
+                {waitlistError && (
+                  <p className="font-bold text-sm text-red-700 border-2 border-red-700 bg-white px-3 py-2 rounded-lg shadow-[3px_3px_0px_0px_#000000]">
+                    {waitlistError}
+                  </p>
+                )}
                 <div className="flex gap-4 font-bold text-xs uppercase pt-1">
                   <button 
                     onClick={() => {
@@ -1322,7 +1363,7 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
               <form 
                 onSubmit={(e) => {
                   e.preventDefault();
-                  if (waitlistEmail.trim()) setWaitlistSubmitted(true);
+                  void handleWaitlistSubmit(waitlistEmail);
                 }}
                 className="space-y-4"
               >
@@ -1333,15 +1374,22 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                     placeholder="Enter your email address"
                     value={waitlistEmail}
                     onChange={(e) => setWaitlistEmail(e.target.value)}
+                    disabled={waitlistSaving}
                     className="flex-1 bg-[#FFFFFF] border-4 border-[#000000] px-4 py-3 rounded-xl font-bold text-sm sm:text-base shadow-[4px_4px_0px_0px_#000000] focus:outline-none focus:translate-x-[-2px] focus:translate-y-[-2px] focus:shadow-[6px_6px_0px_0px_#000000] transition-all"
                   />
                   <button
                     type="submit"
-                    className="bg-[#000000] text-[#FFFFFF] border-4 border-[#000000] font-bold text-xs sm:text-base px-6 py-3 rounded-xl hover:bg-[#FFFFFF] hover:text-[#000000] shadow-[4px_4px_0px_0px_#FFFFFF] hover:translate-x-[-2px] hover:translate-y-[-2px] active:translate-x-0 active:translate-y-0 transition-all cursor-pointer uppercase"
+                    disabled={waitlistSaving}
+                    className="bg-[#000000] text-[#FFFFFF] border-4 border-[#000000] font-bold text-xs sm:text-base px-6 py-3 rounded-xl hover:bg-[#FFFFFF] hover:text-[#000000] shadow-[4px_4px_0px_0px_#FFFFFF] hover:translate-x-[-2px] hover:translate-y-[-2px] active:translate-x-0 active:translate-y-0 transition-all cursor-pointer uppercase disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:bg-[#000000] disabled:hover:text-[#FFFFFF] disabled:hover:translate-x-0 disabled:hover:translate-y-0"
                   >
-                    Join Waitlist
+                    {waitlistSaving ? 'Saving...' : 'Join Waitlist'}
                   </button>
                 </div>
+                {waitlistError && (
+                  <p className="font-bold text-sm text-red-700 border-2 border-red-700 bg-white px-3 py-2 rounded-lg shadow-[3px_3px_0px_0px_#000000]">
+                    {waitlistError}
+                  </p>
+                )}
                 <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#000000]">
                   🔒 No spam. We only send launch updates and early access invites.
                 </p>
