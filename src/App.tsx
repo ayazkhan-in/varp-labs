@@ -15,6 +15,7 @@ import ScrollIndicator from './components/ScrollIndicator';
 import ProjectsGallery from './components/ProjectsGallery';
 import SweepLandingPage from './pages/SweepLandingPage';
 import QRLogLandingPage from './pages/QRLogLandingPage';
+import TeachbackLandingPage from './pages/TeachbackLandingPage';
 import { FloatingPaths } from './components/BackgroundPaths';
 
 export default function App() {
@@ -49,6 +50,11 @@ export default function App() {
       description = 'QRLog is a minimal, privacy-focused Android scanner built for security. It archives every scan locally and blocks malicious redirect links.';
       ogImage = '/og-qrlog.png';
       url = 'https://varplabs.com/qrlog';
+    } else if (currentPath === '/teachback') {
+      title = 'teachback | explain to learn';
+      description = 'TeachBack is an AI-powered learning app built around the Feynman Technique. Explain concepts aloud, receive clarity feedback, and review with spaced repetition.';
+      ogImage = '/assets/Teachback.png';
+      url = 'https://varplabs.com/teachback';
     }
 
     document.title = title;
@@ -82,6 +88,8 @@ export default function App() {
       navigate('/sweep');
     } else if (project.id === 'qrlog') {
       navigate('/qrlog');
+    } else if (project.id === 'teachback') {
+      navigate('/teachback');
     } else {
       setSelectedProject(project);
     }
@@ -99,12 +107,14 @@ export default function App() {
   };
 
   return (
-    <div className={`relative min-h-screen bg-background text-on-surface font-sans selection:bg-primary selection:text-on-primary ${currentPath !== '/sweep' && currentPath !== '/qrlog' && currentPath !== '/qr-log' ? 'custom-cursor-active' : ''}`}>
+    <div className={`relative min-h-screen bg-background text-on-surface font-sans selection:bg-primary selection:text-on-primary ${currentPath !== '/sweep' && currentPath !== '/qrlog' && currentPath !== '/qr-log' && currentPath !== '/teachback' ? 'custom-cursor-active' : ''}`}>
 
       {currentPath === '/sweep' ? (
         <SweepLandingPage onBackHome={() => navigate('/')} />
       ) : currentPath === '/qrlog' || currentPath === '/qr-log' ? (
         <QRLogLandingPage onBackHome={() => navigate('/')} />
+      ) : currentPath === '/teachback' ? (
+        <TeachbackLandingPage onBackHome={() => navigate('/')} />
       ) : (
         <>
           <CustomCursor />
@@ -312,10 +322,6 @@ export default function App() {
             projects={PROJECTS.slice(3)} 
             onProjectClick={handleOpenProject}
           />
-
-          <div className="text-center pt-2">
-            <p className="font-sans text-secondary text-sm md:text-base lowercase italic">cooking more apps <span className="text-primary">;</span>)</p>
-          </div>
         </section>
         {/* Section 4: What We Do */}
         <section className="bg-black/20 py-24 border-y border-white/5" id="services">

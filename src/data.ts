@@ -3,6 +3,8 @@ import taskstackImg from '../assets/Taskstack.png';
 import serinImg from '../assets/Serin.png';
 import qrlogImg from '../assets/qrlog.png';
 import sweepImg from '../assets/sweep.png';
+import teachbackImg from '../assets/Teachback.png';
+import lessgoImg from '../assets/lessgo.png';
 
 export const PROJECTS: Project[] = [
   {
@@ -190,6 +192,60 @@ export const PROJECTS: Project[] = [
       { name: 'Avg Storage Freed (MB)', value: 2850, change: '+340%' },
       { name: 'Safe Deletion Rate', value: 99.2, change: '+0.8%' },
       { name: 'User Retention', value: 76, change: '+12.3%' }
+    ]
+  },
+  {
+    id: 'lessgo',
+    title: 'lessgo',
+    subtitle: 'gamified screen-time reduction',
+    tag: 'wellness app',
+    description: 'Gamified screen-time reduction app that transforms digital wellness into a social, competitive experience with rewards.',
+    extendedDescription: "LessGo is a gamified screen-time reduction app that transforms digital wellness into a social, competitive experience. Instead of simply tracking screen time, LessGo motivates users to spend less time on their phones through challenges, streaks, leaderboards, levels, and rewards. Users can set daily goals, monitor their screen usage, earn XP for meeting targets, unlock badges and trophies, and level up their profile by maintaining healthy habits. The app's social layer allows friends and groups to compete in real-time leaderboards where lower screen time ranks higher, creating accountability and friendly competition.",
+    image: lessgoImg,
+    stats: [
+      { label: 'users reached', value: '15k+' },
+      { label: 'hours saved', value: '120k+' },
+      { label: 'avg reduction', value: '38%' },
+      { label: 'active streaks', value: '8.5k' }
+    ],
+    techStack: ['React Native', 'Node.js', 'Redis', 'PostgreSQL', 'Tailwind CSS'],
+    architecture: [
+      { step: 'time sync', detail: 'Background screen-time daemon synchronizing usage logs' },
+      { step: 'social ledger', detail: 'Real-time leaderboard ranks calculated by Redis sorted sets' },
+      { step: 'quest engine', detail: 'Daily challenge schedules and badge awards processor' },
+      { step: 'rewards store', detail: 'User level progressions and gamification shop ledger' }
+    ],
+    metrics: [
+      { name: 'Weekly Active Users', value: 8900, change: '+24%' },
+      { name: 'Screen Time Reduced', value: 38.2, change: '+4.5%' },
+      { name: 'App Retention Rate', value: 72.0, change: '+2.1%' }
+    ]
+  },
+  {
+    id: 'teachback',
+    title: 'teachback',
+    subtitle: 'ai-powered feynman technique tutor',
+    tag: 'learning app',
+    description: 'AI-powered learning app built around the Feynman Technique. Explain concepts aloud to an AI that listens, evaluates clarity, and schedules spaced reviews.',
+    extendedDescription: 'TeachBack is an AI-powered learning app built around the Feynman Technique—the idea that the best way to truly understand something is to teach it. Users simply enter a topic and explain it aloud as if teaching another person, while AI listens, evaluates clarity, accuracy, confidence, and knowledge gaps. After each session, TeachBack generates personalized feedback, identifies missing concepts, and uses spaced repetition to schedule future review sessions at the optimal time for long-term retention. Over time, the app tracks knowledge growth, communication skills, and learning consistency through streaks, progress analytics, and day-one vs. current performance comparisons.',
+    image: teachbackImg,
+    stats: [
+      { label: 'users reached', value: '12k+' },
+      { label: 'explanations evaluated', value: '85k+' },
+      { label: 'avg retention lift', value: '3.2x' },
+      { label: 'daily active users', value: '4k' }
+    ],
+    techStack: ['React', 'Web Audio API', 'Gemini AI', 'Tailwind CSS', 'IndexedDB'],
+    architecture: [
+      { step: 'topic ingestion', detail: 'User defines a custom topic or chooses from curriculum libraries' },
+      { step: 'speech analytics', detail: 'Real-time voice capture analyzing clarity, pacing, filler words, and vocal confidence' },
+      { step: 'semantic gap engine', detail: 'AI analysis comparing explanation details with core topic concepts to pinpoint gaps' },
+      { step: 'spaced review scheduler', detail: 'Optimizes review timings based on active recall scores and forgetting curves' }
+    ],
+    metrics: [
+      { name: 'Active Learners', value: 4200, change: '+18%' },
+      { name: 'Concept Retention Rate', value: 92.4, change: '+6.2%' },
+      { name: 'Average Explanation Score', value: 84.5, change: '+3.5%' }
     ]
   }
 ];
