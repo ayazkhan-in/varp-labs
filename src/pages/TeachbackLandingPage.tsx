@@ -300,22 +300,22 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
       <header className="sticky top-0 z-50 bg-[#FFFFFF] border-b-4 border-[#000000]">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <img 
               src={teachbackLogo} 
               alt="TeachBack Logo" 
-              className="w-10 h-10 border-2 border-[#000000] rounded-lg shadow-[2px_2px_0px_0px_#000000]"
+              className="w-8 h-8 sm:w-10 sm:h-10 border-2 border-[#000000] rounded-lg shadow-[2px_2px_0px_0px_#000000]"
             />
-            <span className="font-bold text-2xl tracking-tight uppercase">TeachBack</span>
+            <span className="font-bold text-lg sm:text-2xl tracking-tight uppercase">TeachBack</span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <button 
               onClick={() => {
                 const el = document.getElementById('simulator');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="border-2 border-[#000000] bg-[#FFFFFF] hover:bg-zinc-100 px-4 py-1.5 rounded-lg font-bold text-sm shadow-[3px_3px_0px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_#000000] transition-all cursor-pointer"
+              className="hidden sm:block border-2 border-[#000000] bg-[#FFFFFF] hover:bg-zinc-100 px-4 py-1.5 rounded-lg font-bold text-sm shadow-[3px_3px_0px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_#000000] transition-all cursor-pointer"
             >
               Try Simulator
             </button>
@@ -324,7 +324,7 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                 const el = document.getElementById('waitlist-section');
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="border-2 border-[#000000] bg-[#FFCE18] px-4 py-1.5 rounded-lg font-bold text-sm shadow-[3px_3px_0px_0px_#000000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[5px_5px_0px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_#000000] transition-all cursor-pointer"
+              className="border-2 border-[#000000] bg-[#FFCE18] px-3 py-1.5 sm:px-4 sm:py-1.5 rounded-lg font-bold text-xs sm:text-sm shadow-[3px_3px_0px_0px_#000000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[5px_5px_0px_0px_#000000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_#000000] transition-all cursor-pointer"
             >
               Join Waitlist
             </button>
@@ -342,12 +342,12 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
               🧠 Active Recall + Spaced Repetition
             </div>
             
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold leading-none uppercase tracking-tighter">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-none uppercase tracking-tighter">
               Stop studying.<br />
               <span className="bg-[#000000] text-[#FFFFFF] px-2 py-0.5 inline-block my-1 border-4 border-[#000000]">Start teaching.</span>
             </h1>
             
-            <p className="text-xl md:text-2xl font-bold leading-relaxed max-w-2xl">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-relaxed max-w-2xl">
               TeachBack is an AI-powered tutor designed around the Feynman Technique. Explain topics aloud; our AI evaluates your core understanding, highlights missing details, and schedules spaced review loops to secure long-term retention.
             </p>
 
@@ -456,19 +456,19 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
       </section>
 
       {/* Main Feynman Simulator Interactive Widget */}
-      <section id="simulator" className="py-20 max-w-7xl mx-auto px-6 border-b-4 border-[#000000]">
+      <section id="simulator" className="py-10 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 border-b-4 border-[#000000]">
         
         <div className="text-center space-y-4 mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-tight">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight">
             Feynman Technique Simulator
           </h2>
-          <p className="text-lg md:text-xl font-bold max-w-2xl mx-auto">
+          <p className="text-sm sm:text-lg md:text-xl font-bold max-w-2xl mx-auto">
             Test your explaining skills right now. Select a topic, choose whether you want to simulate a strong or weak explanation, and see how our critique engine works.
           </p>
         </div>
 
         {/* Large Simulator Card */}
-        <div className="border-4 border-[#000000] bg-[#FFFFFF] rounded-3xl overflow-hidden shadow-[8px_8px_0px_0px_#000000]">
+        <div className="border-4 border-[#000000] bg-[#FFFFFF] rounded-2xl sm:rounded-3xl overflow-hidden shadow-[8px_8px_0px_0px_#000000]">
           
           {/* Card Titlebar */}
           <div className="bg-[#000000] text-[#FFFFFF] p-4 flex justify-between items-center font-bold text-sm uppercase">
@@ -479,7 +479,7 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
             </div>
           </div>
 
-          <div className="p-6 md:p-8">
+          <div className="p-4 sm:p-6 md:p-8">
             <AnimatePresence mode="wait">
 
               {/* STEP 1: SELECT TOPIC */}
@@ -492,8 +492,8 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                   className="space-y-8"
                 >
                   <div>
-                    <h3 className="text-2xl font-bold uppercase mb-2">Step 1: Choose a Topic</h3>
-                    <p className="font-bold">Select one of our preset subjects or enter a custom topic to start.</p>
+                    <h3 className="text-xl sm:text-2xl font-bold uppercase mb-2">Step 1: Choose a Topic</h3>
+                    <p className="font-bold text-sm sm:text-base">Select one of our preset subjects or enter a custom topic to start.</p>
                   </div>
 
                   {/* Preset Grid */}
@@ -502,7 +502,7 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                       <button
                         key={preset.id}
                         onClick={() => handlePresetSelect(preset)}
-                        className={`text-left p-5 border-4 border-[#000000] rounded-2xl transition-all cursor-pointer ${
+                        className={`text-left p-4 sm:p-5 border-4 border-[#000000] rounded-2xl transition-all cursor-pointer ${
                           selectedPreset.id === preset.id && !customTopic
                             ? 'bg-[#FFCE18] shadow-[4px_4px_0px_0px_#000000]' 
                             : 'bg-[#FFFFFF] hover:bg-zinc-100 hover:translate-y-[-2px]'
@@ -519,8 +519,8 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
 
                   {/* Custom Topic Input */}
                   <div className="space-y-2 border-t-4 border-[#000000] pt-6">
-                    <label className="block text-lg font-bold uppercase">Or Type a Custom Topic</label>
-                    <div className="flex gap-4">
+                    <label className="block text-base sm:text-lg font-bold uppercase">Or Type a Custom Topic</label>
+                    <div className="flex flex-col sm:flex-row gap-3">
                       <input 
                         type="text"
                         value={customTopic}
@@ -530,11 +530,11 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                           setSelectedPreset(TOPIC_PRESETS[0]);
                         }}
                         placeholder="e.g. How the Internet Works, Newton's Laws..."
-                        className="flex-1 bg-[#FFFFFF] border-4 border-[#000000] p-4 rounded-xl font-bold text-lg focus:outline-none focus:bg-[#FFCE18]/10 transition-colors"
+                        className="flex-1 bg-[#FFFFFF] border-4 border-[#000000] p-3 sm:p-4 rounded-xl font-bold text-sm sm:text-lg focus:outline-none focus:bg-[#FFCE18]/10 transition-colors"
                       />
                       <button
                         onClick={handleStartTeaching}
-                        className="bg-[#FFCE18] border-4 border-[#000000] px-8 rounded-xl font-bold uppercase hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[4px_4px_0px_0px_#000000] active:translate-x-0 active:translate-y-0 transition-all cursor-pointer"
+                        className="bg-[#FFCE18] border-4 border-[#000000] py-3 px-6 sm:py-3.5 sm:px-8 rounded-xl font-bold uppercase hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[4px_4px_0px_0px_#000000] active:translate-x-0 active:translate-y-0 transition-all cursor-pointer w-full sm:w-auto text-sm sm:text-base"
                       >
                         Teach it!
                       </button>
@@ -544,7 +544,7 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                   <div className="flex justify-end pt-4">
                     <button
                       onClick={handleStartTeaching}
-                      className="bg-[#000000] text-[#FFFFFF] border-4 border-[#000000] px-8 py-3.5 rounded-xl font-bold uppercase hover:bg-[#FFFFFF] hover:text-[#000000] transition-colors cursor-pointer"
+                      className="bg-[#000000] text-[#FFFFFF] border-4 border-[#000000] px-6 py-3 sm:px-8 sm:py-3.5 rounded-xl font-bold uppercase hover:bg-[#FFFFFF] hover:text-[#000000] transition-colors cursor-pointer w-full sm:w-auto text-center text-sm sm:text-base"
                     >
                       Continue
                     </button>
@@ -563,15 +563,15 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                 >
                   <div className="flex justify-between items-start flex-wrap gap-4">
                     <div>
-                      <h3 className="text-2xl font-bold uppercase mb-1">Step 2: Explain it</h3>
-                      <p className="font-bold">Topic: <span className="border-b-4 border-[#FFCE18] px-1">{customTopic || selectedPreset.name}</span></p>
+                      <h3 className="text-xl sm:text-2xl font-bold uppercase mb-1">Step 2: Explain it</h3>
+                      <p className="font-bold text-sm sm:text-base">Topic: <span className="border-b-4 border-[#FFCE18] px-1">{customTopic || selectedPreset.name}</span></p>
                     </div>
                     
                     {/* Demo quality selector */}
-                    <div className="border-4 border-[#000000] p-1.5 rounded-xl flex gap-2">
+                    <div className="border-4 border-[#000000] p-1 sm:p-1.5 rounded-xl flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                       <button
                         onClick={() => setSimulationQuality('good')}
-                        className={`px-3 py-1.5 rounded-lg font-bold text-xs uppercase cursor-pointer ${
+                        className={`px-3 py-1.5 rounded-lg font-bold text-[10px] xs:text-xs uppercase cursor-pointer w-full sm:w-auto text-center ${
                           simulationQuality === 'good' ? 'bg-[#FFCE18]' : 'hover:bg-zinc-100'
                         }`}
                       >
@@ -579,7 +579,7 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                       </button>
                       <button
                         onClick={() => setSimulationQuality('bad')}
-                        className={`px-3 py-1.5 rounded-lg font-bold text-xs uppercase cursor-pointer ${
+                        className={`px-3 py-1.5 rounded-lg font-bold text-[10px] xs:text-xs uppercase cursor-pointer w-full sm:w-auto text-center ${
                           simulationQuality === 'bad' ? 'bg-[#FFCE18]' : 'hover:bg-zinc-100'
                         }`}
                       >
@@ -589,10 +589,10 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                   </div>
 
                   {/* Audio vs Text Tabs */}
-                  <div className="flex border-b-4 border-[#000000]">
+                  <div className="flex border-b-4 border-[#000000] w-full">
                     <button
                       onClick={() => setActiveTab('speak')}
-                      className={`px-6 py-3 font-bold uppercase border-t-4 border-x-4 border-[#000000] rounded-t-xl translate-y-[4px] cursor-pointer ${
+                      className={`flex-1 sm:flex-initial text-center px-3 sm:px-6 py-2 sm:py-2.5 font-bold uppercase border-t-4 border-x-4 border-[#000000] rounded-t-xl translate-y-[4px] cursor-pointer text-[10px] xs:text-xs sm:text-base ${
                         activeTab === 'speak' ? 'bg-[#FFFFFF] z-10' : 'bg-[#FFCE18]/30 hover:bg-[#FFCE18]/50'
                       }`}
                     >
@@ -600,7 +600,7 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                     </button>
                     <button
                       onClick={() => setActiveTab('write')}
-                      className={`px-6 py-3 font-bold uppercase border-t-4 border-x-4 border-[#000000] rounded-t-xl translate-y-[4px] ml-2 cursor-pointer ${
+                      className={`flex-1 sm:flex-initial text-center px-3 sm:px-6 py-2 sm:py-2.5 font-bold uppercase border-t-4 border-x-4 border-[#000000] rounded-t-xl translate-y-[4px] ml-2 cursor-pointer text-[10px] xs:text-xs sm:text-base ${
                         activeTab === 'write' ? 'bg-[#FFFFFF] z-10' : 'bg-[#FFCE18]/30 hover:bg-[#FFCE18]/50'
                       }`}
                     >
@@ -612,22 +612,22 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                   <div className="pt-4">
                     {activeTab === 'speak' ? (
                       <div className="space-y-6">
-                        <div className="border-4 border-[#000000] rounded-2xl bg-zinc-50 p-8 flex flex-col items-center justify-center space-y-4">
+                        <div className="border-4 border-[#000000] rounded-2xl bg-zinc-50 p-4 sm:p-8 flex flex-col items-center justify-center space-y-4">
                           
                           {isRecording ? (
                             <div className="w-full space-y-6">
                               {/* Recording Active View */}
                               <div className="flex justify-center items-center gap-2">
-                                <span className="w-3 h-3 bg-red-600 rounded-full animate-ping"></span>
-                                <span className="font-bold text-sm uppercase tracking-widest text-[#000000]">Transcribing Real-Time Audio...</span>
+                                <span className="w-2.5 h-2.5 bg-red-600 rounded-full animate-ping shrink-0"></span>
+                                <span className="font-bold text-[10px] xs:text-xs sm:text-sm uppercase tracking-widest text-[#000000]">Transcribing Real-Time Audio...</span>
                               </div>
 
                               {/* Active Audio Wave visualizer */}
-                              <div className="h-16 flex items-center justify-center gap-1.5">
+                              <div className="h-16 flex items-center justify-center gap-1 sm:gap-1.5">
                                 {Array.from({ length: 24 }).map((_, i) => (
                                   <motion.div
                                     key={i}
-                                    className="w-1.5 bg-[#000000] rounded-full"
+                                    className={`w-1 bg-[#000000] rounded-full sm:w-1.5 ${i >= 12 ? 'hidden xs:block' : ''}`}
                                     animate={{
                                       height: [
                                         '10px',
@@ -652,22 +652,22 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                           ) : (
                             <button
                               onClick={handleToggleRecord}
-                              className="w-24 h-24 bg-[#FFCE18] border-4 border-[#000000] rounded-full flex items-center justify-center shadow-[4px_4px_0px_0px_#000000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_#000000] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0px_0px_#000000] transition-all cursor-pointer"
+                              className="w-20 h-20 sm:w-24 sm:h-24 bg-[#FFCE18] border-4 border-[#000000] rounded-full flex items-center justify-center shadow-[4px_4px_0px_0px_#000000] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_#000000] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0px_0px_#000000] transition-all cursor-pointer shrink-0"
                             >
-                              <Mic size={36} strokeWidth={2.5} />
+                              <Mic size={32} className="sm:w-9 sm:h-9" strokeWidth={2.5} />
                             </button>
                           )}
 
-                          <p className="font-bold uppercase text-sm">
+                          <p className="font-bold uppercase text-[10px] sm:text-sm text-center">
                             {isRecording ? 'Recording... Click button to stop & submit' : 'Click microphone to simulate talking aloud'}
                           </p>
                         </div>
 
                         {/* Speech Real-Time Transcript Display */}
                         {simulatedTranscript && (
-                          <div className="border-4 border-[#000000] p-5 rounded-2xl bg-[#FFCE18]/10">
-                            <h4 className="font-bold uppercase text-xs tracking-wider mb-2">Speech-to-Text Transcript:</h4>
-                            <p className="font-bold italic text-lg">"{simulatedTranscript}"</p>
+                          <div className="border-4 border-[#000000] p-4 sm:p-5 rounded-2xl bg-[#FFCE18]/10">
+                            <h4 className="font-bold uppercase text-[10px] sm:text-xs tracking-wider mb-2">Speech-to-Text Transcript:</h4>
+                            <p className="font-bold italic text-sm sm:text-lg">"{simulatedTranscript}"</p>
                           </div>
                         )}
                       </div>
@@ -677,33 +677,35 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                           value={typedExplanation}
                           onChange={(e) => setTypedExplanation(e.target.value)}
                           placeholder={`Explain ${customTopic || selectedPreset.name} in your own words as if teaching a 12-year-old...`}
-                          className="w-full h-44 bg-[#FFFFFF] border-4 border-[#000000] p-4 rounded-2xl font-bold focus:outline-none focus:bg-[#FFCE18]/5 shadow-[4px_4px_0px_0px_#000000] resize-none"
+                          className="w-full h-44 bg-[#FFFFFF] border-4 border-[#000000] p-3.5 sm:p-4 rounded-2xl font-bold text-sm sm:text-base focus:outline-none focus:bg-[#FFCE18]/5 shadow-[4px_4px_0px_0px_#000000] resize-none"
                         />
                         
                         {/* Quick fills */}
-                        <div className="flex gap-2 justify-start items-center">
+                        <div className="flex flex-col sm:flex-row gap-2 sm:items-center">
                           <span className="font-bold text-xs uppercase">Quick Fill:</span>
-                          <button
-                            onClick={() => setTypedExplanation(selectedPreset.goodExp.text)}
-                            className="border-2 border-[#000000] bg-[#FFFFFF] px-3 py-1 rounded-lg text-xs font-bold uppercase hover:bg-zinc-100 cursor-pointer"
-                          >
-                            Load Strong Explanation
-                          </button>
-                          <button
-                            onClick={() => setTypedExplanation(selectedPreset.badExp.text)}
-                            className="border-2 border-[#000000] bg-[#FFFFFF] px-3 py-1 rounded-lg text-xs font-bold uppercase hover:bg-zinc-100 cursor-pointer"
-                          >
-                            Load Weak Explanation
-                          </button>
+                          <div className="flex flex-wrap gap-2">
+                            <button
+                              onClick={() => setTypedExplanation(selectedPreset.goodExp.text)}
+                              className="border-2 border-[#000000] bg-[#FFFFFF] px-2.5 py-1 rounded-lg text-[10px] sm:text-xs font-bold uppercase hover:bg-zinc-100 cursor-pointer"
+                            >
+                              Load Strong Explanation
+                            </button>
+                            <button
+                              onClick={() => setTypedExplanation(selectedPreset.badExp.text)}
+                              className="border-2 border-[#000000] bg-[#FFFFFF] px-2.5 py-1 rounded-lg text-[10px] sm:text-xs font-bold uppercase hover:bg-zinc-100 cursor-pointer"
+                            >
+                              Load Weak Explanation
+                            </button>
+                          </div>
                         </div>
                       </div>
                     )}
                   </div>
 
-                  <div className="flex justify-between items-center pt-6 border-t-4 border-[#000000]">
+                  <div className="flex flex-col-reverse sm:flex-row gap-3 sm:justify-between sm:items-center pt-6 border-t-4 border-[#000000]">
                     <button
                       onClick={handleResetSimulator}
-                      className="border-4 border-[#000000] bg-[#FFFFFF] px-6 py-3 rounded-xl font-bold uppercase hover:bg-zinc-100 active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer"
+                      className="border-4 border-[#000000] bg-[#FFFFFF] px-6 py-3 rounded-xl font-bold uppercase hover:bg-zinc-100 active:translate-x-0.5 active:translate-y-0.5 transition-all cursor-pointer w-full sm:w-auto text-center"
                     >
                       Back
                     </button>
@@ -712,7 +714,7 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                       <button
                         onClick={() => handleSubmitExplanation(typedExplanation)}
                         disabled={!typedExplanation.trim()}
-                        className="bg-[#FFCE18] border-4 border-[#000000] px-8 py-3.5 rounded-xl font-bold uppercase hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[4px_4px_0px_0px_#000000] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0px_0px_#000000] disabled:opacity-50 disabled:pointer-events-none transition-all cursor-pointer"
+                        className="bg-[#FFCE18] border-4 border-[#000000] px-8 py-3.5 rounded-xl font-bold uppercase hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[4px_4px_0px_0px_#000000] active:translate-x-0 active:translate-y-0 active:shadow-[1px_1px_0px_0px_#000000] disabled:opacity-50 disabled:pointer-events-none transition-all cursor-pointer w-full sm:w-auto text-center"
                       >
                         Analyze Explanation
                       </button>
@@ -780,14 +782,14 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                     <div className="lg:col-span-6 space-y-6">
                       
                       {/* Clarity Score Big Block */}
-                      <div className="border-4 border-[#000000] rounded-2xl bg-[#FFCE18] p-6 flex items-center gap-6 shadow-[4px_4px_0px_0px_#000000]">
-                        <div className="w-24 h-24 rounded-2xl border-4 border-[#000000] bg-[#FFFFFF] flex flex-col items-center justify-center">
-                          <span className="text-4xl font-bold">{resultsData.clarity}%</span>
-                          <span className="text-[10px] font-bold uppercase tracking-wider">clarity</span>
+                      <div className="border-4 border-[#000000] rounded-2xl bg-[#FFCE18] p-4 sm:p-6 flex flex-col sm:flex-row items-center text-center sm:text-left gap-4 sm:gap-6 shadow-[4px_4px_0px_0px_#000000]">
+                        <div className="w-20 h-20 sm:w-24 sm:h-24 shrink-0 rounded-2xl border-4 border-[#000000] bg-[#FFFFFF] flex flex-col items-center justify-center">
+                          <span className="text-3xl sm:text-4xl font-bold">{resultsData.clarity}%</span>
+                          <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider">clarity</span>
                         </div>
                         <div>
-                          <h4 className="text-lg font-bold uppercase mb-1">Concept Mastery Score</h4>
-                          <p className="font-bold text-sm">
+                          <h4 className="text-base sm:text-lg font-bold uppercase mb-1">Concept Mastery Score</h4>
+                          <p className="font-bold text-xs sm:text-sm">
                             {resultsData.clarity >= 80 
                               ? "Excellent explanation! Your teaching maps closely to the curriculum framework."
                               : "Some gaps detected. You have the general idea, but key concepts are missing."}
@@ -796,8 +798,8 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                       </div>
 
                       {/* Detail Metrics */}
-                      <div className="border-4 border-[#000000] p-6 rounded-2xl space-y-4">
-                        <h4 className="font-bold uppercase text-sm border-b-2 border-[#000000] pb-2">Diagnostic Metrics</h4>
+                      <div className="border-4 border-[#000000] p-4 sm:p-6 rounded-2xl space-y-4">
+                        <h4 className="font-bold uppercase text-xs sm:text-sm border-b-2 border-[#000000] pb-2">Diagnostic Metrics</h4>
                         
                         <div className="space-y-3">
                           {/* Accuracy */}
@@ -825,9 +827,9 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                       </div>
 
                       {/* AI Coach Feedback text */}
-                      <div className="border-4 border-[#000000] p-6 rounded-2xl bg-[#FFFFFF]">
-                        <h4 className="font-bold uppercase text-sm mb-3">AI Coach Critique</h4>
-                        <p className="font-bold text-base leading-relaxed italic">
+                      <div className="border-4 border-[#000000] p-4 sm:p-6 rounded-2xl bg-[#FFFFFF]">
+                        <h4 className="font-bold uppercase text-xs sm:text-sm mb-3">AI Coach Critique</h4>
+                        <p className="font-bold text-sm sm:text-base leading-relaxed italic">
                           "{resultsData.feedback}"
                         </p>
                       </div>
@@ -838,13 +840,13 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                     <div className="lg:col-span-6 space-y-6">
                       
                       {/* Concept Matrix */}
-                      <div className="border-4 border-[#000000] p-6 rounded-2xl bg-[#FFFFFF] space-y-4">
-                        <h4 className="font-bold uppercase text-sm border-b-2 border-[#000000] pb-2">Concept Coverage Mapping</h4>
+                      <div className="border-4 border-[#000000] p-4 sm:p-6 rounded-2xl bg-[#FFFFFF] space-y-4">
+                        <h4 className="font-bold uppercase text-xs sm:text-sm border-b-2 border-[#000000] pb-2">Concept Coverage Mapping</h4>
                         
                         <div className="space-y-2.5">
                           {resultsData.mastered.map((concept, i) => (
-                            <div key={i} className="flex gap-2.5 items-center font-bold text-sm bg-zinc-50 border border-zinc-200 p-2.5 rounded-lg">
-                              <div className="bg-[#FFCE18] border-2 border-[#000000] rounded p-0.5 text-[#000000]">
+                            <div key={i} className="flex gap-2.5 items-start font-bold text-xs sm:text-sm bg-zinc-50 border border-zinc-200 p-2.5 rounded-lg">
+                              <div className="bg-[#FFCE18] border-2 border-[#000000] rounded p-0.5 text-[#000000] shrink-0 mt-0.5">
                                 <Check size={14} strokeWidth={3} />
                               </div>
                               <span>Mastered: {concept}</span>
@@ -852,8 +854,8 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                           ))}
 
                           {resultsData.gaps.map((concept, i) => (
-                            <div key={i} className="flex gap-2.5 items-center font-bold text-sm bg-[#FFCE18]/10 border-2 border-[#000000] p-2.5 rounded-lg">
-                              <div className="bg-[#000000] text-[#FFFFFF] rounded p-0.5">
+                            <div key={i} className="flex gap-2.5 items-start font-bold text-xs sm:text-sm bg-[#FFCE18]/10 border-2 border-[#000000] p-2.5 rounded-lg">
+                              <div className="bg-[#000000] text-[#FFFFFF] rounded p-0.5 shrink-0 mt-0.5">
                                 <AlertCircle size={14} strokeWidth={3} />
                               </div>
                               <span className="text-[#000000]">Missing Concept: {concept}</span>
@@ -869,33 +871,43 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                       </div>
 
                       {/* Spaced Repetition Scheduling */}
-                      <div className="border-4 border-[#000000] p-6 rounded-2xl bg-[#FFFFFF] space-y-4 shadow-[4px_4px_0px_0px_#000000]">
-                        <div className="flex justify-between items-center">
-                          <h4 className="font-bold uppercase text-sm">Review Schedule</h4>
-                          <span className="text-xs uppercase font-bold bg-[#000000] text-[#FFFFFF] px-2.5 py-1 rounded">SuperMemo-2 SM2 Algorithm</span>
+                      <div className="border-4 border-[#000000] p-4 sm:p-6 rounded-2xl bg-[#FFFFFF] space-y-4 shadow-[4px_4px_0px_0px_#000000]">
+                        <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+                          <h4 className="font-bold uppercase text-xs sm:text-sm">Review Schedule</h4>
+                          <span className="text-[9px] sm:text-xs uppercase font-bold bg-[#000000] text-[#FFFFFF] px-2.5 py-1 rounded w-fit">SuperMemo-2 SM2 Algorithm</span>
                         </div>
                         
-                        <div className="grid grid-cols-3 gap-3">
-                          <div className="border-2 border-[#000000] p-3 rounded-xl bg-[#FFCE18] text-center">
-                            <p className="text-[10px] uppercase font-bold">Session 1</p>
-                            <p className="font-bold text-sm mt-1">24 Hours</p>
-                            <span className="text-[9px] uppercase font-bold border border-[#000000] bg-[#FFFFFF] px-1 rounded block mt-1.5">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                          
+                          {/* Session 1 */}
+                          <div className="border-2 border-[#000000] p-3 rounded-xl bg-[#FFCE18] flex sm:flex-col items-center justify-between sm:justify-center sm:text-center gap-2 sm:gap-0 select-none">
+                            <div className="text-left sm:text-center">
+                              <p className="text-[10px] uppercase font-bold text-[#000000]/60">Session 1</p>
+                              <p className="font-bold text-sm mt-0.5 sm:mt-1">24 Hours</p>
+                            </div>
+                            <span className="text-[9px] uppercase font-bold border border-[#000000] bg-[#FFFFFF] px-2 py-0.5 rounded shrink-0 sm:mt-1.5">
                               {resultsData.gaps.length > 0 ? 'Review Gaps' : 'Active Recall'}
                             </span>
                           </div>
                           
-                          <div className="border-2 border-[#000000] p-3 rounded-xl bg-[#FFFFFF] text-center">
-                            <p className="text-[10px] uppercase font-bold">Session 2</p>
-                            <p className="font-bold text-sm mt-1">3 Days</p>
-                            <span className="text-[9px] uppercase font-bold border border-[#000000] bg-zinc-100 px-1 rounded block mt-1.5">
+                          {/* Session 2 */}
+                          <div className="border-2 border-[#000000] p-3 rounded-xl bg-[#FFFFFF] flex sm:flex-col items-center justify-between sm:justify-center sm:text-center gap-2 sm:gap-0 select-none">
+                            <div className="text-left sm:text-center">
+                              <p className="text-[10px] uppercase font-bold text-zinc-500">Session 2</p>
+                              <p className="font-bold text-sm mt-0.5 sm:mt-1">3 Days</p>
+                            </div>
+                            <span className="text-[9px] uppercase font-bold border border-[#000000] bg-zinc-100 px-2 py-0.5 rounded shrink-0 sm:mt-1.5">
                               Consolidation
                             </span>
                           </div>
 
-                          <div className="border-2 border-[#000000] p-3 rounded-xl bg-[#FFFFFF] text-center">
-                            <p className="text-[10px] uppercase font-bold">Session 3</p>
-                            <p className="font-bold text-sm mt-1">10 Days</p>
-                            <span className="text-[9px] uppercase font-bold border border-[#000000] bg-zinc-100 px-1 rounded block mt-1.5">
+                          {/* Session 3 */}
+                          <div className="border-2 border-[#000000] p-3 rounded-xl bg-[#FFFFFF] flex sm:flex-col items-center justify-between sm:justify-center sm:text-center gap-2 sm:gap-0 select-none">
+                            <div className="text-left sm:text-center">
+                              <p className="text-[10px] uppercase font-bold text-zinc-500">Session 3</p>
+                              <p className="font-bold text-sm mt-0.5 sm:mt-1">10 Days</p>
+                            </div>
+                            <span className="text-[9px] uppercase font-bold border border-[#000000] bg-zinc-100 px-2 py-0.5 rounded shrink-0 sm:mt-1.5">
                               Retention test
                             </span>
                           </div>
@@ -916,24 +928,24 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
       </section>
 
       {/* Day-One vs Day-14 Active Comparison */}
-      <section className="py-20 bg-[#FFFFFF] border-b-4 border-[#000000]">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-12 sm:py-20 bg-[#FFFFFF] border-b-4 border-[#000000]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           
           <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-tight mb-2">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight mb-2">
                 Feynman Learning Curve
               </h2>
-              <p className="text-lg font-bold">
+              <p className="text-sm sm:text-lg font-bold">
                 Watch how explanation clarity improves over a 2-week active recall cycle.
               </p>
             </div>
 
             {/* Toggle Topic Control */}
-            <div className="border-4 border-[#000000] p-1.5 rounded-xl flex gap-2">
+            <div className="border-4 border-[#000000] p-1 sm:p-1.5 rounded-xl flex gap-2">
               <button
                 onClick={() => setCompareTopic('dns')}
-                className={`px-4 py-2 rounded-lg font-bold text-xs uppercase cursor-pointer ${
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-bold text-[10px] xs:text-xs uppercase cursor-pointer ${
                   compareTopic === 'dns' ? 'bg-[#FFCE18]' : 'hover:bg-zinc-100'
                 }`}
               >
@@ -941,7 +953,7 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
               </button>
               <button
                 onClick={() => setCompareTopic('react')}
-                className={`px-4 py-2 rounded-lg font-bold text-xs uppercase cursor-pointer ${
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg font-bold text-[10px] xs:text-xs uppercase cursor-pointer ${
                   compareTopic === 'react' ? 'bg-[#FFCE18]' : 'hover:bg-zinc-100'
                 }`}
               >
@@ -954,76 +966,78 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             
             {/* Day 1 - Raw explanation */}
-            <div className="border-4 border-[#000000] p-8 rounded-3xl bg-[#FFFFFF] relative shadow-[4px_4px_0px_0px_#000000]">
-              <div className="absolute top-0 right-8 transform -translate-y-1/2 border-4 border-[#000000] bg-[#000000] text-[#FFFFFF] font-bold text-sm uppercase px-4 py-1 rounded-md">
-                Day 1
-              </div>
-
+            <div className="border-4 border-[#000000] p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-[#FFFFFF] shadow-[4px_4px_0px_0px_#000000]">
               <div className="space-y-4">
-                <span className="font-bold uppercase text-xs border border-[#000000] px-2 py-0.5 rounded bg-zinc-100">
-                  Initial Explanation
-                </span>
+                <div className="flex justify-between items-center flex-wrap gap-2 border-b-2 border-[#000000]/10 pb-3 mb-2">
+                  <span className="font-bold uppercase text-[10px] xs:text-xs border border-[#000000] px-2 py-0.5 bg-zinc-100 rounded">
+                    Initial Explanation
+                  </span>
+                  <span className="border-2 border-[#000000] bg-[#000000] text-[#FFFFFF] font-bold text-[10px] xs:text-xs uppercase px-2.5 py-0.5 rounded">
+                    Day 1
+                  </span>
+                </div>
                 
-                <h4 className="text-2xl font-bold">
+                <h4 className="text-xl sm:text-2xl font-bold">
                   {compareTopic === 'dns' ? 'Domain Name System (DNS)' : 'React Virtual DOM'}
                 </h4>
 
-                <p className="font-bold italic text-base leading-relaxed text-zinc-600">
+                <p className="font-bold italic text-sm sm:text-base leading-relaxed text-zinc-600">
                   {compareTopic === 'dns' 
                     ? '"Um, so DNS is like, a thing that, uh, translates website names, like google.com, to, you know, numbers. I think it uses servers or something. It is slow and sometimes it fails."' 
                     : '"React is like, quick because it has a fake DOM. And it checks what changes and updates it. I don\'t really know how it compares them though, just that it does."'}
                 </p>
 
-                <div className="border-t-2 border-[#000000] pt-4 grid grid-cols-3 gap-2 text-center text-xs font-bold uppercase">
+                <div className="border-t-2 border-[#000000] pt-4 grid grid-cols-3 gap-1.5 text-center font-bold uppercase">
                   <div>
-                    <span className="text-[10px] text-zinc-500 block mb-1">Clarity Score</span>
-                    <span className="text-xl">34%</span>
+                    <span className="text-[8px] xs:text-[10px] text-zinc-500 block mb-1">Clarity Score</span>
+                    <span className="text-base sm:text-xl">34%</span>
                   </div>
                   <div>
-                    <span className="text-[10px] text-zinc-500 block mb-1">Filler Words</span>
-                    <span className="text-xl text-red-600">12</span>
+                    <span className="text-[8px] xs:text-[10px] text-zinc-500 block mb-1">Filler Words</span>
+                    <span className="text-base sm:text-xl text-red-600">12</span>
                   </div>
                   <div>
-                    <span className="text-[10px] text-zinc-500 block mb-1">Knowledge Gaps</span>
-                    <span className="text-xl text-red-600">4 Gaps</span>
+                    <span className="text-[8px] xs:text-[10px] text-zinc-500 block mb-1">Knowledge Gaps</span>
+                    <span className="text-base sm:text-xl text-red-600">4 Gaps</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Day 14 - Mastered explanation */}
-            <div className="border-4 border-[#000000] p-8 rounded-3xl bg-[#FFCE18] relative shadow-[8px_8px_0px_0px_#000000]">
-              <div className="absolute top-0 right-8 transform -translate-y-1/2 border-4 border-[#000000] bg-[#FFFFFF] text-[#000000] font-bold text-sm uppercase px-4 py-1 rounded-md">
-                Day 14 (3 Reviews)
-              </div>
-
+            <div className="border-4 border-[#000000] p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-[#FFCE18] shadow-[8px_8px_0px_0px_#000000]">
               <div className="space-y-4">
-                <span className="font-bold uppercase text-xs border border-[#000000] px-2 py-0.5 rounded bg-[#FFFFFF]">
-                  Mastered Explanation
-                </span>
+                <div className="flex justify-between items-center flex-wrap gap-2 border-b-2 border-[#000000]/15 pb-3 mb-2">
+                  <span className="font-bold uppercase text-[10px] xs:text-xs border border-[#000000] px-2 py-0.5 bg-[#FFFFFF] rounded">
+                    Mastered Explanation
+                  </span>
+                  <span className="border-2 border-[#000000] bg-[#FFFFFF] text-[#000000] font-bold text-[10px] xs:text-xs uppercase px-2.5 py-0.5 rounded">
+                    Day 14 (3 Reviews)
+                  </span>
+                </div>
 
-                <h4 className="text-2xl font-bold">
+                <h4 className="text-xl sm:text-2xl font-bold">
                   {compareTopic === 'dns' ? 'Domain Name System (DNS)' : 'React Virtual DOM'}
                 </h4>
 
-                <p className="font-bold italic text-base leading-relaxed">
+                <p className="font-bold italic text-sm sm:text-base leading-relaxed">
                   {compareTopic === 'dns'
                     ? '"DNS is the decentralized naming system that translates human-readable domain names into IP addresses. It operates on a hierarchical tree structure: queries start at root servers, check TLD servers, and retrieve records from authoritative name servers using UDP port 53."'
                     : '"React reconciles state changes using a virtual representation of the DOM. When state changes, it generates a new virtual tree, performs a diffing algorithm (O(n) complexity heuristics) to identify changes, and bundles updates to the real DOM, avoiding expensive repaints."'}
                 </p>
 
-                <div className="border-t-2 border-[#000000] pt-4 grid grid-cols-3 gap-2 text-center text-xs font-bold uppercase">
+                <div className="border-t-2 border-[#000000] pt-4 grid grid-cols-3 gap-1.5 text-center font-bold uppercase">
                   <div>
-                    <span className="text-[10px] text-zinc-700 block mb-1">Clarity Score</span>
-                    <span className="text-xl">96%</span>
+                    <span className="text-[8px] xs:text-[10px] text-zinc-700 block mb-1">Clarity Score</span>
+                    <span className="text-base sm:text-xl">96%</span>
                   </div>
                   <div>
-                    <span className="text-[10px] text-zinc-700 block mb-1">Filler Words</span>
-                    <span className="text-xl">0</span>
+                    <span className="text-[8px] xs:text-[10px] text-zinc-700 block mb-1">Filler Words</span>
+                    <span className="text-base sm:text-xl">0</span>
                   </div>
                   <div>
-                    <span className="text-[10px] text-zinc-700 block mb-1">Knowledge Gaps</span>
-                    <span className="text-xl">0 Gaps</span>
+                    <span className="text-[8px] xs:text-[10px] text-zinc-700 block mb-1">Knowledge Gaps</span>
+                    <span className="text-base sm:text-xl">0 Gaps</span>
                   </div>
                 </div>
               </div>
@@ -1156,7 +1170,7 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
 
           {/* Interactive Calendar grid */}
           <div className="lg:col-span-7">
-            <div className="border-4 border-[#000000] rounded-3xl p-6 md:p-8 bg-[#FFFFFF] shadow-[8px_8px_0px_0px_#000000]">
+            <div className="border-4 border-[#000000] rounded-3xl p-4 sm:p-6 md:p-8 bg-[#FFFFFF] shadow-[8px_8px_0px_0px_#000000]">
               
               <div className="border-b-2 border-[#000000] pb-4 mb-6 flex justify-between items-center flex-wrap gap-2">
                 <h4 className="font-bold uppercase tracking-wider text-sm">Consistency Tracker</h4>
@@ -1173,7 +1187,7 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
               </div>
 
               {/* Grid representation */}
-              <div className="grid grid-cols-7 gap-3 mb-6">
+              <div className="grid grid-cols-7 gap-1.5 sm:gap-3 mb-6">
                 {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((day, i) => (
                   <div key={i} className="text-center font-bold text-xs uppercase text-zinc-500 py-1">
                     {day}
@@ -1184,7 +1198,7 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                   <button
                     key={idx}
                     onClick={() => toggleStreakDay(idx)}
-                    className={`aspect-square border-2 border-[#000000] rounded-lg font-bold text-xs transition-colors flex items-center justify-center cursor-pointer select-none ${
+                    className={`aspect-square border-2 border-[#000000] rounded-lg font-bold text-[10px] sm:text-xs transition-colors flex items-center justify-center cursor-pointer select-none ${
                       day.active ? 'bg-[#FFCE18]' : 'bg-[#FFFFFF] hover:bg-zinc-100'
                     }`}
                   >
@@ -1204,13 +1218,13 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
       </section>
 
       {/* Curated Curriculum List */}
-      <section className="py-20 max-w-7xl mx-auto px-6 border-b-4 border-[#000000]">
+      <section className="py-10 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 border-b-4 border-[#000000]">
         
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-tight">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight">
             Curriculum Topic Library
           </h2>
-          <p className="text-lg md:text-xl font-bold max-w-2xl mx-auto">
+          <p className="text-sm sm:text-lg md:text-xl font-bold max-w-2xl mx-auto">
             Choose a subject area and jump straight into an explanation to build complete conceptual mapping.
           </p>
         </div>
@@ -1219,9 +1233,9 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
           
           {/* Card: Computer Science */}
           <div className="border-4 border-[#000000] p-6 rounded-2xl bg-[#FFFFFF] space-y-4 shadow-[4px_4px_0px_0px_#000000]">
-            <h3 className="text-2xl font-bold uppercase border-b-2 border-[#000000] pb-2 flex justify-between items-center">
+            <h3 className="text-xl sm:text-2xl font-bold uppercase border-b-2 border-[#000000] pb-2 flex justify-between items-center gap-2 flex-wrap sm:flex-nowrap">
               <span>💻 Systems & Software</span>
-              <span className="text-xs font-bold border border-[#000000] bg-[#FFCE18] px-2 py-0.5 rounded">Core CS</span>
+              <span className="text-xs font-bold border border-[#000000] bg-[#FFCE18] px-2 py-0.5 rounded shrink-0">Core CS</span>
             </h3>
             <div className="space-y-2.5">
               {[
@@ -1230,14 +1244,14 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                 { name: 'DNS (Domain Name System)', desc: 'Translating domains to IP addresses' },
                 { name: 'Database Sharding', desc: 'Horizontal partition of databases across servers' }
               ].map((topic, i) => (
-                <div key={i} className="flex justify-between items-center border border-[#000000] p-3 rounded-xl hover:bg-[#FFCE18]/10 transition-colors">
+                <div key={i} className="flex justify-between items-center border border-[#000000] p-3 rounded-xl hover:bg-[#FFCE18]/10 transition-colors gap-3">
                   <div>
                     <h5 className="font-bold text-sm">{topic.name}</h5>
                     <p className="text-[11px] font-bold text-zinc-500 uppercase tracking-wide mt-0.5">{topic.desc}</p>
                   </div>
                   <button
                     onClick={() => handleLoadCurriculumTopic(topic.name)}
-                    className="border-2 border-[#000000] bg-[#FFCE18] px-2.5 py-1 rounded-lg text-xs font-bold uppercase shadow-[1.5px_1.5px_0px_0px_#000000] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[2.5px_2.5px_0px_0px_#000000] active:translate-x-0 active:translate-y-0 transition-all cursor-pointer"
+                    className="border-2 border-[#000000] bg-[#FFCE18] px-2.5 py-1 rounded-lg text-xs font-bold uppercase shadow-[1.5px_1.5px_0px_0px_#000000] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[2.5px_2.5px_0px_0px_#000000] active:translate-x-0 active:translate-y-0 transition-all cursor-pointer shrink-0"
                   >
                     Teach
                   </button>
@@ -1248,9 +1262,9 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
 
           {/* Card: Science & Academics */}
           <div className="border-4 border-[#000000] p-6 rounded-2xl bg-[#FFFFFF] space-y-4 shadow-[4px_4px_0px_0px_#000000]">
-            <h3 className="text-2xl font-bold uppercase border-b-2 border-[#000000] pb-2 flex justify-between items-center">
+            <h3 className="text-xl sm:text-2xl font-bold uppercase border-b-2 border-[#000000] pb-2 flex justify-between items-center gap-2 flex-wrap sm:flex-nowrap">
               <span>🔬 Science & Learning</span>
-              <span className="text-xs font-bold border border-[#000000] bg-[#FFCE18] px-2 py-0.5 rounded">Academics</span>
+              <span className="text-xs font-bold border border-[#000000] bg-[#FFCE18] px-2 py-0.5 rounded shrink-0">Academics</span>
             </h3>
             <div className="space-y-2.5">
               {[
@@ -1259,14 +1273,14 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                 { name: 'Mitochondria function', desc: 'Chemical conversion of ATP inside cell bodies' },
                 { name: 'Inflationary Cosmology', desc: 'Exponential expansion of the early universe' }
               ].map((topic, i) => (
-                <div key={i} className="flex justify-between items-center border border-[#000000] p-3 rounded-xl hover:bg-[#FFCE18]/10 transition-colors">
+                <div key={i} className="flex justify-between items-center border border-[#000000] p-3 rounded-xl hover:bg-[#FFCE18]/10 transition-colors gap-3">
                   <div>
                     <h5 className="font-bold text-sm">{topic.name}</h5>
                     <p className="text-[11px] font-bold text-zinc-500 uppercase tracking-wide mt-0.5">{topic.desc}</p>
                   </div>
                   <button
                     onClick={() => handleLoadCurriculumTopic(topic.name)}
-                    className="border-2 border-[#000000] bg-[#FFCE18] px-2.5 py-1 rounded-lg text-xs font-bold uppercase shadow-[1.5px_1.5px_0px_0px_#000000] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[2.5px_2.5px_0px_0px_#000000] active:translate-x-0 active:translate-y-0 transition-all cursor-pointer"
+                    className="border-2 border-[#000000] bg-[#FFCE18] px-2.5 py-1 rounded-lg text-xs font-bold uppercase shadow-[1.5px_1.5px_0px_0px_#000000] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[2.5px_2.5px_0px_0px_#000000] active:translate-x-0 active:translate-y-0 transition-all cursor-pointer shrink-0"
                   >
                     Teach
                   </button>
@@ -1280,12 +1294,12 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
       </section>
 
       {/* Waitlist CTA Poster Banner */}
-      <section id="waitlist-section" className="bg-[#FFCE18] border-b-4 border-[#000000] py-20 text-center">
-        <div className="max-w-4xl mx-auto px-6 space-y-8">
-          <h2 className="text-5xl md:text-7xl font-bold uppercase tracking-tighter leading-none">
+      <section id="waitlist-section" className="bg-[#FFCE18] border-b-4 border-[#000000] py-12 sm:py-20 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-8">
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold uppercase tracking-tighter leading-none">
             Join the Waitlist
           </h2>
-          <p className="text-xl md:text-2xl font-bold max-w-xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-xl md:text-2xl font-bold max-w-xl mx-auto leading-relaxed">
             Get early access to personalized AI evaluation, speech analytics, and smart review loops.
           </p>
 
@@ -1319,16 +1333,16 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
                     placeholder="Enter your email address"
                     value={waitlistEmail}
                     onChange={(e) => setWaitlistEmail(e.target.value)}
-                    className="flex-1 bg-[#FFFFFF] border-4 border-[#000000] px-4 py-4 rounded-xl font-bold text-lg shadow-[4px_4px_0px_0px_#000000] focus:outline-none focus:translate-x-[-2px] focus:translate-y-[-2px] focus:shadow-[6px_6px_0px_0px_#000000] transition-all"
+                    className="flex-1 bg-[#FFFFFF] border-4 border-[#000000] px-4 py-3 rounded-xl font-bold text-sm sm:text-base shadow-[4px_4px_0px_0px_#000000] focus:outline-none focus:translate-x-[-2px] focus:translate-y-[-2px] focus:shadow-[6px_6px_0px_0px_#000000] transition-all"
                   />
                   <button
                     type="submit"
-                    className="bg-[#000000] text-[#FFFFFF] border-4 border-[#000000] font-bold text-base px-8 py-4 rounded-xl hover:bg-[#FFFFFF] hover:text-[#000000] shadow-[4px_4px_0px_0px_#FFFFFF] hover:translate-x-[-2px] hover:translate-y-[-2px] active:translate-x-0 active:translate-y-0 transition-all cursor-pointer uppercase"
+                    className="bg-[#000000] text-[#FFFFFF] border-4 border-[#000000] font-bold text-xs sm:text-base px-6 py-3 rounded-xl hover:bg-[#FFFFFF] hover:text-[#000000] shadow-[4px_4px_0px_0px_#FFFFFF] hover:translate-x-[-2px] hover:translate-y-[-2px] active:translate-x-0 active:translate-y-0 transition-all cursor-pointer uppercase"
                   >
                     Join Waitlist
                   </button>
                 </div>
-                <p className="text-xs font-bold uppercase tracking-wider text-[#000000]">
+                <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#000000]">
                   🔒 No spam. We only send launch updates and early access invites.
                 </p>
               </form>

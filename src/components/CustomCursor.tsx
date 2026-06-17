@@ -8,8 +8,8 @@ export default function CustomCursor() {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  // Smooth springs to simulate rapid, elastic movement
-  const springConfig = { damping: 40, stiffness: 450, mass: 0.4 };
+  // Tight, responsive springs to minimize tracking lag on slower devices
+  const springConfig = { damping: 35, stiffness: 850, mass: 0.18 };
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
 
@@ -72,6 +72,7 @@ export default function CustomCursor() {
       style={{
         left: cursorX,
         top: cursorY,
+        willChange: 'transform',
       }}
     >
       <motion.div

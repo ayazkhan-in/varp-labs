@@ -1,6 +1,7 @@
 import { useState, useTransition, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Terminal, Activity, ArrowUpRight, ArrowRight, ShieldCheck, Mail, GitBranch, Linkedin, Github } from 'lucide-react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Terminal, Activity, ArrowUpRight, ArrowRight, ShieldCheck, Mail, GitBranch, Linkedin, Github, LayoutGrid, List } from 'lucide-react';
 import { PROJECTS } from './data';
 import { Project } from './types';
 import logomark from '../assets/logomark.svg';
@@ -22,6 +23,7 @@ export default function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeTab, setActiveTab] = useState<'work' | 'services' | 'contact'>('work');
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   
   const [, startTransition] = useTransition();
   const [showShader, setShowShader] = useState(true);
@@ -108,6 +110,7 @@ export default function App() {
 
   return (
     <div className={`relative min-h-screen bg-background text-on-surface font-sans selection:bg-primary selection:text-on-primary ${currentPath !== '/sweep' && currentPath !== '/qrlog' && currentPath !== '/qr-log' && currentPath !== '/teachback' ? 'custom-cursor-active' : ''}`}>
+      <SpeedInsights />
 
       {currentPath === '/sweep' ? (
         <SweepLandingPage onBackHome={() => navigate('/')} />
@@ -309,18 +312,43 @@ export default function App() {
 
         {/* Section 3: Our Apps & Projects Gallery */}
         <section className="max-w-7xl mx-auto px-6 md:px-12 py-24 space-y-12 select-text border-b border-white/5" id="work">
-          <div className="flex justify-between items-end border-b border-white/5 pb-6">
+          <div className="flex justify-between items-end border-b border-white/5 pb-6 gap-4">
             <div>
               <h2 className="font-display text-3xl md:text-4xl font-semibold text-primary lowercase tracking-tight">our apps</h2>
               <p className="text-secondary text-xs font-mono uppercase tracking-wider mt-2">innovative applications & tools</p>
             </div>
-            {/* Custom line indicator */}
-            <div className="h-[2px] w-12 bg-primary hidden sm:block" />
+            
+            {/* View Mode Toggle */}
+            <div className="flex bg-black/35 border border-white/10 p-0.5 rounded-lg items-center gap-0.5 shadow-inner shrink-0 select-none">
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`p-1.5 rounded-md transition-all cursor-pointer ${
+                  viewMode === 'grid' 
+                    ? 'bg-primary text-background' 
+                    : 'text-zinc-500 hover:text-primary'
+                }`}
+                title="Grid View"
+              >
+                <LayoutGrid size={14} />
+              </button>
+              <button
+                onClick={() => setViewMode('list')}
+                className={`p-1.5 rounded-md transition-all cursor-pointer ${
+                  viewMode === 'list' 
+                    ? 'bg-primary text-background' 
+                    : 'text-zinc-500 hover:text-primary'
+                }`}
+                title="List View"
+              >
+                <List size={14} />
+              </button>
+            </div>
           </div>
 
           <ProjectsGallery 
             projects={PROJECTS.slice(3)} 
             onProjectClick={handleOpenProject}
+            viewMode={viewMode}
           />
         </section>
         {/* Section 4: What We Do */}
