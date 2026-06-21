@@ -34,6 +34,10 @@ export default function ProjectsGallery({ projects, onProjectClick, viewMode = '
                   <img 
                     src={project.image} 
                     alt={project.title}
+                    width={40}
+                    height={40}
+                    loading="lazy"
+                    decoding="async"
                     className="w-10 h-10 rounded-lg object-cover border border-white/10 opacity-70 group-hover:opacity-90 transition-opacity shrink-0"
                   />
                 )}
@@ -142,6 +146,11 @@ export default function ProjectsGallery({ projects, onProjectClick, viewMode = '
                 <img 
                   src={project.image} 
                   alt={project.title}
+                  width={800}
+                  height={600}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  fetchPriority={index === 0 ? 'high' : 'auto'}
                   className="w-full h-full object-cover"
                 />
               </div>

@@ -39,7 +39,10 @@ export default function CaseStudyViewer({ project }: CaseStudyViewerProps) {
   }, [project]);
 
   // Generate simulated real-time telemetry streaming log strings
+  // Only runs when the diagnostics tab is active to avoid unnecessary background state updates.
   useEffect(() => {
+    if (activeTab !== 'diagnostics') return;
+
     const interval = setInterval(() => {
       const messages = [
         `[telemetry] query throughput: ${(Math.random() * 1000 + 4000).toFixed(0)} req/s`,
@@ -53,7 +56,7 @@ export default function CaseStudyViewer({ project }: CaseStudyViewerProps) {
     }, 4000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [activeTab]);
 
   const handleManualDiagnose = () => {
     setIsRefreshing(true);

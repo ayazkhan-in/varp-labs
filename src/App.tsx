@@ -1,4 +1,4 @@
-import { useState, useTransition, useEffect, Suspense, lazy } from 'react';
+import { useState, useTransition, useEffect, Suspense, lazy, useCallback, useMemo } from 'react';
 import { motion } from 'motion/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Analytics } from '@vercel/analytics/react';
@@ -87,13 +87,13 @@ export default function App() {
     }
   }, [currentPath]);
 
-  const navigate = (path: string) => {
+  const navigate = useCallback((path: string) => {
     window.history.pushState(null, '', path);
     setCurrentPath(path);
     window.scrollTo({ top: 0, behavior: 'instant' });
-  };
+  }, []);
 
-  const handleOpenProject = (project: Project) => {
+  const handleOpenProject = useCallback((project: Project) => {
     if (project.id === 'sweep') {
       navigate('/sweep');
     } else if (project.id === 'qrlog') {
@@ -103,18 +103,22 @@ export default function App() {
     } else {
       setSelectedProject(project);
     }
-  };
+  }, [navigate]);
 
-  const handleCloseProject = () => {
+  const handleCloseProject = useCallback(() => {
     setSelectedProject(null);
-  };
+  }, []);
 
-  const handleOpenContact = () => {
+  const handleOpenContact = useCallback(() => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
-  };
+  }, []);
+
+  // Memoize the sliced projects array to avoid creating a new reference on every render,
+  // which would cause ProjectsGallery to re-render unnecessarily.
+  const visibleProjects = useMemo(() => PROJECTS.slice(3), []);
 
   return (
     <div className={`relative min-h-screen bg-background text-on-surface font-sans selection:bg-primary selection:text-on-primary ${currentPath !== '/sweep' && currentPath !== '/qrlog' && currentPath !== '/qr-log' && currentPath !== '/teachback' ? 'custom-cursor-active' : ''}`}>
@@ -151,6 +155,10 @@ export default function App() {
             <img 
               src={logomark}
               alt="Varp Labs Logo"
+              width={20}
+              height={20}
+              fetchPriority="high"
+              decoding="async"
               className="w-5 h-5"
               aria-hidden="true"
             />
@@ -361,7 +369,7 @@ export default function App() {
           </div>
 
           <ProjectsGallery 
-            projects={PROJECTS.slice(3)} 
+            projects={visibleProjects} 
             onProjectClick={handleOpenProject}
             viewMode={viewMode}
           />

@@ -338,6 +338,10 @@ export default function TeachbackLandingPage({ onBackHome }: TeachbackLandingPag
             <img 
               src={teachbackLogo} 
               alt="TeachBack Logo" 
+              width={40}
+              height={40}
+              fetchPriority="high"
+              decoding="async"
               className="w-8 h-8 sm:w-10 sm:h-10 border-2 border-[#000000] rounded-lg shadow-[2px_2px_0px_0px_#000000]"
             />
             <span className="font-bold text-lg sm:text-2xl tracking-tight uppercase">TeachBack</span>

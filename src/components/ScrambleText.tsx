@@ -14,17 +14,28 @@ export default function ScrambleText({ text, delayMs = 200, scrambleSpeed = 30 }
   useEffect(() => {
     let isMounted = true;
     let frameId: number;
-    let timeoutId: NodeJS.Timeout;
+    let initialTimeoutId: ReturnType<typeof setTimeout>;
 
     const startScramble = () => {
       const length = text.length;
       let iterations = 0;
-      const maxIterations = length * 3; // total iterations to ensure smooth full resolver
+      const maxIterations = length * 3; // total iterations for smooth full resolve
+      let lastFrameTime = 0;
 
-      const tick = () => {
+      // Use requestAnimationFrame instead of setTimeout for cooperative scheduling.
+      // rAF yields to the browser's rendering pipeline, preventing long tasks that
+      // would block input processing and increase INP.
+      const tick = (timestamp: number) => {
         if (!isMounted) return;
 
-        // Calculate how many characters has resolved based on progress
+        // Throttle to scrambleSpeed ms per frame to match the original timing
+        if (timestamp - lastFrameTime < scrambleSpeed) {
+          frameId = requestAnimationFrame(tick);
+          return;
+        }
+        lastFrameTime = timestamp;
+
+        // Calculate how many characters have resolved based on progress
         const solvedCount = Math.floor((iterations / maxIterations) * length);
 
         const scrambled = text
@@ -34,7 +45,7 @@ export default function ScrambleText({ text, delayMs = 200, scrambleSpeed = 30 }
               return char; // Output resolved character
             }
             if (char === ' ') {
-              return ' '; // Keep spaces as is to prevent weird structural shifts
+              return ' '; // Keep spaces to prevent weird structural shifts
             }
             // Otherwise, get random glyph
             return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
@@ -45,17 +56,17 @@ export default function ScrambleText({ text, delayMs = 200, scrambleSpeed = 30 }
 
         if (iterations < maxIterations) {
           iterations++;
-          timeoutId = setTimeout(tick, scrambleSpeed);
+          frameId = requestAnimationFrame(tick);
         } else {
           setDisplayText(text); // Ensure precise match at the absolute end
         }
       };
 
-      tick();
+      frameId = requestAnimationFrame(tick);
     };
 
     // Stagger opening delay
-    const initialTimeout = setTimeout(() => {
+    initialTimeoutId = setTimeout(() => {
       startScramble();
     }, delayMs);
 
@@ -69,8 +80,7 @@ export default function ScrambleText({ text, delayMs = 200, scrambleSpeed = 30 }
 
     return () => {
       isMounted = false;
-      clearTimeout(initialTimeout);
-      clearTimeout(timeoutId);
+      clearTimeout(initialTimeoutId);
       cancelAnimationFrame(frameId);
     };
   }, [text, delayMs, scrambleSpeed]);

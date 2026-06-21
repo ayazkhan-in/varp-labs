@@ -1,7 +1,10 @@
 import { motion } from "motion/react";
 
 export function FloatingPaths({ position }: { position: number }) {
-    const paths = Array.from({ length: 36 }, (_, i) => ({
+    // Reduced from 36 to 18 paths per instance (72 → 36 total animated paths).
+    // Each path runs repeat: Infinity — halving the count cuts GPU compositor load ~50%
+    // while keeping the visual appearance virtually identical.
+    const paths = Array.from({ length: 18 }, (_, i) => ({
         id: i,
         d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${
             380 - i * 5 * position

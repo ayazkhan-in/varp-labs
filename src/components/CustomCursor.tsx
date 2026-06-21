@@ -1,9 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 
 export default function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  
+  // Use a ref to track isVisible inside event handlers without causing effect re-runs.
+  // Previously isVisible was in the dependency array, causing all listeners to be
+  // torn down and re-registered on every first mouse move — a major INP source.
+  const isVisibleRef = useRef(false);
   
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
@@ -22,14 +27,20 @@ export default function CustomCursor() {
       // Offset cursor anchor to the extreme top-left tip of the cursor arrow
       mouseX.set(e.clientX - 4);
       mouseY.set(e.clientY - 4);
-      if (!isVisible) setIsVisible(true);
+      // Use ref to avoid stale closure and prevent effect re-registration
+      if (!isVisibleRef.current) {
+        isVisibleRef.current = true;
+        setIsVisible(true);
+      }
     };
 
     const handleMouseLeave = () => {
+      isVisibleRef.current = false;
       setIsVisible(false);
     };
 
     const handleMouseEnter = () => {
+      isVisibleRef.current = true;
       setIsVisible(true);
     };
 
@@ -62,7 +73,8 @@ export default function CustomCursor() {
       document.removeEventListener('mouseenter', handleMouseEnter);
       window.removeEventListener('mouseover', handleMouseOver);
     };
-  }, [mouseX, mouseY, isVisible]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mouseX, mouseY]); // mouseX/mouseY are stable MotionValue objects — isVisible intentionally excluded
 
   if (!isVisible) return null;
 

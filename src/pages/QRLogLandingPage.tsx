@@ -171,7 +171,7 @@ export default function QRLogLandingPage({ onBackHome }: QRLogLandingPageProps) 
           </button>
 
           <div className="flex items-center gap-2">
-            <img src={logomark} alt="Varp Labs Logo" className="w-4 h-4 opacity-75 filter invert" />
+            <img src={logomark} alt="Varp Labs Logo" width={16} height={16} decoding="async" className="w-4 h-4 opacity-75 filter invert" />
             <span className="font-display text-sm font-semibold tracking-tight text-zinc-500 lowercase">qrlog</span>
           </div>
 
@@ -280,6 +280,10 @@ export default function QRLogLandingPage({ onBackHome }: QRLogLandingPageProps) 
                 <img 
                   src={qrlogImg} 
                   alt="QRLog App Logo" 
+                  width={256}
+                  height={256}
+                  fetchPriority="high"
+                  decoding="async"
                   className="w-full h-full object-contain rounded-3xl" 
                 />
               </div>

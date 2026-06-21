@@ -27,7 +27,10 @@ export default function GlowBackground() {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [mouseX, mouseY]);
+  // mouseX and mouseY are stable MotionValue objects — they never change identity,
+  // so including them in deps is unnecessary and misleading.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!isMounted) return null;
 
