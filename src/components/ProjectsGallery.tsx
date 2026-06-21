@@ -15,13 +15,17 @@ export default function ProjectsGallery({ projects, onProjectClick, viewMode = '
       <div className="space-y-3">
         {projects.map((project, index) => {
           return (
-            <motion.div
+            <motion.a
               key={project.id}
+              href={project.id === 'sweep' ? '/sweep' : project.id === 'qrlog' ? '/qrlog' : project.id === 'teachback' ? '/teachback' : '#'}
+              onClick={(e) => {
+                e.preventDefault();
+                onProjectClick(project);
+              }}
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              onClick={() => onProjectClick(project)}
               className="border border-white/5 bg-black/10 p-3.5 hover:bg-black/20 hover:border-white/10 transition-all duration-300 flex items-center justify-between gap-4 cursor-pointer group rounded-xl relative overflow-hidden"
             >
               {/* App Info Left */}
@@ -55,7 +59,7 @@ export default function ProjectsGallery({ projects, onProjectClick, viewMode = '
                   <ArrowUpRight size={14} className="text-secondary group-hover:text-primary transition-colors" />
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
           );
         })}
 
@@ -111,8 +115,13 @@ export default function ProjectsGallery({ projects, onProjectClick, viewMode = '
         }
 
         return (
-          <motion.div
+          <motion.a
             key={project.id}
+            href={project.id === 'sweep' ? '/sweep' : project.id === 'qrlog' ? '/qrlog' : project.id === 'teachback' ? '/teachback' : '#'}
+            onClick={(e) => {
+              e.preventDefault();
+              onProjectClick(project);
+            }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
@@ -121,7 +130,6 @@ export default function ProjectsGallery({ projects, onProjectClick, viewMode = '
               delay: 0.1 * (index + 1),
               ease: [0.16, 1, 0.3, 1]
             }}
-            onClick={() => onProjectClick(project)}
             className={`group relative overflow-hidden border border-white/5 cursor-pointer bg-black/20 hover:bg-black/40 hover:border-white/10 transition-all duration-300 flex flex-col justify-end p-5 sm:p-6 ${cardClasses}`}
           >
             {/* Image Background */}
@@ -174,7 +182,7 @@ export default function ProjectsGallery({ projects, onProjectClick, viewMode = '
                 </div>
               )}
             </div>
-          </motion.div>
+          </motion.a>
         );
       })}
 

@@ -38,23 +38,23 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    let title = 'varp labs | sophisticated software';
-    let description = 'building sophisticated software solutions for the modern world. we transform complex requirements into elegant, high-performance digital products.';
+    let title = 'Varp Labs | Sophisticated Software';
+    let description = 'Building sophisticated software solutions for the modern world. We transform complex requirements into elegant, high-performance digital products.';
     let ogImage = '/og.png';
     let url = 'https://varplabs.com/';
 
     if (currentPath === '/sweep') {
-      title = 'sweep | auto screenshot deletion';
+      title = 'Sweep | Auto Screenshot Deletion';
       description = 'Sweep intelligently monitors your Android device storage and automatically deletes screenshots based on age, size, and custom rules.';
       ogImage = '/og-sweep.png';
       url = 'https://varplabs.com/sweep';
     } else if (currentPath === '/qrlog' || currentPath === '/qr-log') {
-      title = 'qrlog | qr code scanner & generator';
+      title = 'QRLog | QR Code Scanner & Generator';
       description = 'QRLog is a minimal, privacy-focused Android scanner built for security. It archives every scan locally and blocks malicious redirect links.';
       ogImage = '/og-qrlog.png';
       url = 'https://varplabs.com/qrlog';
     } else if (currentPath === '/teachback') {
-      title = 'teachback | explain to learn';
+      title = 'TeachBack | Explain to Learn';
       description = 'TeachBack is an AI-powered learning app built around the Feynman Technique. Explain concepts aloud, receive clarity feedback, and review with spaced repetition.';
       ogImage = '/og-teachback.png';
       url = 'https://varplabs.com/teachback';
@@ -78,6 +78,11 @@ export default function App() {
     updateMetaTag('meta[name="twitter:description"]', 'content', description);
     updateMetaTag('meta[name="twitter:image"]', 'content', ogImage);
     updateMetaTag('meta[name="twitter:url"]', 'content', url);
+
+    const canonicalEl = document.getElementById('canonical-link');
+    if (canonicalEl) {
+      canonicalEl.setAttribute('href', url);
+    }
   }, [currentPath]);
 
   const navigate = (path: string) => {
@@ -458,7 +463,7 @@ export default function App() {
             <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors flex items-center gap-1">
               <Github size={12} /> github
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors flex items-center gap-1">
+            <a href="https://linkedin.com/company/varplabs" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors flex items-center gap-1">
               <Linkedin size={12} /> linkedin
             </a>
           </div>
